@@ -1,14 +1,25 @@
 import pandas as pd
 import os
+from nltk.corpus import stopwords
 import bs4
 import requests
 from io import BytesIO
 import boto3
 import PyPDF2
+from nltk.tokenize import word_tokenize
 import logging
 from nltk.tokenize import RegexpTokenizer
 import re
 from datetime import datetime
+import gensim
+from gensim.utils import simple_preprocess
+from gensim.parsing.preprocessing import STOPWORDS
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
+from nltk.stem.porter import *
+import nltk
+
+stemmer = SnowballStemmer("english")
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -266,7 +277,68 @@ def finding_scale_of_lost_in_complaint(ref_complaint):
     scale_of_lost = finding_scale_of_money(all_text)
     
     return scale_of_lost
+
+def is_CRM_used(binary_take):
     
+    if binary_take:
+        return 'YES'
+    else:
+        return 'NO'
+    
+def lemmatize_stemming(text):
+    return stemmer.stem(WordNetLemmatizer().lemmatize(text, pos='v'))
+
+# Tokenize and lemmatize
+def preprocess(text):
+    result=[]
+    for token in gensim.utils.simple_preprocess(text) :
+        if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
+            result.append(lemmatize_stemming(token))
+            
+    return result
+
+def getting_a_single_tweet_from_complint(single_series):
+    
+    #Need to contruct the extract
+    full_text_complaint = single_series['all_text']
+    text_without_stopwords = word_tokenize(full_text_complaint)
+    text_without_stopwords = [word for word in text_without_stopwords if not word in all_stopwords]
+    text_without_stopwords = (" ").join(text_without_stopwords)
+    
+    #Need to get a 1/4 of the point
+    index_start = round(len(text_without_stopwords)/4)
+    text_without_stopwords = text_without_stopwords[index_start:index_start+260]
+    
+    string_consturction = (
+        'Ref' + single_series['ref'] + '\n' + 
+        'Loss~£' + single_series['scale_of_lost'] + '\n' +
+        'Outcome:' + single_series['outcome'] + '\n' +
+        'CRM used?' + is_CRM_used(single_series['CRM']) + '\n' +
+        'Info: ' + text_without_stopwords
+        )
+    
+    #Crop
+    string_consturction = string_consturction[:279]
+    
+    return string_consturction
+
+def list_of_tweets(list_of_complants):
+    
+    #Convert to pandas
+    fos_scam_records = pd.DataFrame.from_dict(list_of_complants)
+    
+    seprator_sting = '\n' + '\n' + '--------------------------------' + '\n' + '\n'
+    
+    list_of_all_tweets = seprator_sting
+    
+    for index, each_row in fos_scam_records.iterrows():
+        
+        tweet_string = getting_a_single_tweet_from_complint(each_row)
+        
+        list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
+        
+    return list_of_all_tweets
+        
     
 def run():
     """
@@ -286,3 +358,6 @@ def run():
 
 url_link = 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=2023-06-01&DateTo=2023-06-05&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance'
 complete_list = get_complete_desision_list(url_link)
+
+#%% 
+final_results = list_of_tweets(complete_list)
