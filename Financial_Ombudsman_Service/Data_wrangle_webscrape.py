@@ -17,7 +17,7 @@ from gensim.parsing.preprocessing import STOPWORDS
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
 from nltk.stem.porter import *
 import nltk
-
+all_stopwords = stopwords.words('english')
 stemmer = SnowballStemmer("english")
 
 logging.basicConfig(level=logging.INFO)
