@@ -11,6 +11,7 @@ import logging
 from nltk.tokenize import RegexpTokenizer
 import re
 from datetime import datetime
+import datetime
 import gensim
 from gensim.utils import simple_preprocess
 from gensim.parsing.preprocessing import STOPWORDS
@@ -347,8 +348,21 @@ def list_of_tweets(list_of_complants):
         
     return list_of_all_tweets
 
-def 
-        
+def getting_URL_with_date_range(start_date, end_date):
+    
+    #Seting up the URL strings
+    start_date_sting = start_date.strftime('%Y-%m-%d')
+    end_date_sting = end_date.strftime('%Y-%m-%d')
+    
+    websrcape_URL = (
+        'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=' +
+        start_date_sting +
+        '&DateTo=' +
+        end_date_sting +
+        '&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance'
+        )
+    
+    return websrcape_URL
     
 def run():
     """
@@ -374,5 +388,9 @@ final_results = list_of_tweets(complete_list)
 
 #%%
 
-tmp = complete_list[9]['date']
-print(date_format_as_string_in_tweet(tmp))
+start_date = datetime.date(2023, 1, 6)
+end_date = datetime.date(2023, 5, 6)
+url_Link_from_function = getting_URL_with_date_range(start_date, end_date)
+
+#2023-06-01&DateTo=2023-06-05
+
