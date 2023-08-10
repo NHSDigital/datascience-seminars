@@ -297,6 +297,13 @@ def preprocess(text):
             
     return result
 
+def date_format_as_string_in_tweet(date_info):
+    
+    #getting the date
+    date_of_compl = date_info.strftime("%m%d%y")
+    
+    return date_of_compl
+
 def getting_a_single_tweet_from_complint(single_series):
     
     #Need to contruct the extract
@@ -307,14 +314,15 @@ def getting_a_single_tweet_from_complint(single_series):
     
     #Need to get a 1/4 of the point
     index_start = round(len(text_without_stopwords)/4)
-    text_without_stopwords = text_without_stopwords[index_start:index_start+260]
+    text_without_stopwords = text_without_stopwords[index_start:]
     
     string_consturction = (
-        'Ref' + single_series['ref'] + '\n' + 
-        'Loss~£' + single_series['scale_of_lost'] + '\n' +
-        'Outcome:' + single_series['outcome'] + '\n' +
-        'CRM used?' + is_CRM_used(single_series['CRM']) + '\n' +
-        'Info: ' + text_without_stopwords
+        date_format_as_string_in_tweet(single_series['date']) + '\n' +
+        single_series['ref'] + '\n' + 
+        '~£' + single_series['scale_of_lost'] + '\n' +
+        single_series['outcome'] + '\n' +
+        'CRM?' + is_CRM_used(single_series['CRM']) + '\n' +
+        '...' + text_without_stopwords
         )
     
     #Crop
@@ -338,6 +346,8 @@ def list_of_tweets(list_of_complants):
         list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
         
     return list_of_all_tweets
+
+def 
         
     
 def run():
@@ -361,3 +371,8 @@ complete_list = get_complete_desision_list(url_link)
 
 #%% 
 final_results = list_of_tweets(complete_list)
+
+#%%
+
+tmp = complete_list[9]['date']
+print(date_format_as_string_in_tweet(tmp))
