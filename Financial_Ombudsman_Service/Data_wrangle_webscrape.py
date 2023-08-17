@@ -10,6 +10,7 @@ from nltk.tokenize import word_tokenize
 import logging
 from nltk.tokenize import RegexpTokenizer
 import re
+import string
 #from datetime import datetime
 import datetime
 import gensim
@@ -203,7 +204,6 @@ def get_complete_desision_list(url_link):
         list_of_machine_readable_deision = wrangle_each_deision_list(desison_list)
         
         list_of_deisions = list_of_deisions + list_of_machine_readable_deision
-        print(list_of_machine_readable_deision)
         
     return list_of_deisions
 
@@ -340,13 +340,41 @@ def list_of_tweets(list_of_complants):
     
     list_of_all_tweets = seprator_sting
     
+    list_of_strings = []
+    
     for index, each_row in fos_scam_records.iterrows():
         
         tweet_string = getting_a_single_tweet_from_complint(each_row)
         
         list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
         
-    return list_of_all_tweets
+        list_of_strings = list_of_strings + [tweet_string]
+        
+    #Getting a pandas data frame
+    pandas_of_tweets = pd.DataFrame(list_of_strings, columns=['list_of_tweets'])
+        
+    return list_of_all_tweets, pandas_of_tweets
+
+def saving_the_tweets(complete_list_of_deisions, url_link):
+    
+    #Getting the save file name 
+    name_of_file = url_link.translate(str.maketrans('', '', string.punctuation))
+    #Crop the start
+    name_of_file = name_of_file[75:]
+    
+    to_tweet, pandas_of_tweets = list_of_tweets(complete_list_of_deisions)
+    
+    #Need to remove some uni code characters
+    to_tweet = to_tweet.replace('\uf0b7', '')
+    
+    #Saving the string to text
+    with open(name_of_file + ".txt", "w") as text_file:
+        text_file.write(to_tweet)
+    
+    #Saving CSV
+    pandas_of_tweets = pandas_of_tweets.to_csv(name_of_file + ".csv",index=False,encoding='utf-8-sig')
+    
+    return
 
 def getting_URL_with_date_range(start_date, end_date):
     
@@ -371,26 +399,18 @@ def run():
     :return: number of search results
     """
     
-    soup = get_info_as_soup(url_link)
-    
-    desison_list = get_list_of_deision(soup)
-    
-    list_of_machine_readable_deision = wrangle_each_deision_list(desison_list)
-
 
 #%%
 
-url_link = 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=2023-06-01&DateTo=2023-06-05&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance'
-complete_list = get_complete_desision_list(url_link)
+#Step 1 - getting the link
+start_date = datetime.date(2023, 6, 1)
+end_date = datetime.date(2023, 6, 2)
 
-#%% 
-final_results = list_of_tweets(complete_list)
+url_link_from_function = getting_URL_with_date_range(start_date, end_date)
 
-#%%
+#Step 2 - getting the data
+complete_list = get_complete_desision_list(url_link_from_function)
 
-start_date = datetime.date(2023, 1, 6)
-end_date = datetime.date(2023, 5, 6)
-url_Link_from_function = getting_URL_with_date_range(start_date, end_date)
+#%% Step 3 - getting the tweets
 
-#2023-06-01&DateTo=2023-06-05
-
+file_name = saving_the_tweets(complete_list, url_link_from_function)
