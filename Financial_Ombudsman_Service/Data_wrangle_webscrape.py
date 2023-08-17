@@ -10,7 +10,7 @@ from nltk.tokenize import word_tokenize
 import logging
 from nltk.tokenize import RegexpTokenizer
 import re
-from datetime import datetime
+#from datetime import datetime
 import datetime
 import gensim
 from gensim.utils import simple_preprocess
@@ -135,7 +135,7 @@ def wrangle_each_deision_list(desison_list):
         
         #Getting the info
         ref_number = each_deison[0][19:]
-        date_of_desision = datetime.strptime(each_deison[1], '%d %b %Y')
+        date_of_desision = datetime.datetime.strptime(each_deison[1], '%d %b %Y')
         bank = each_deison[2]
         outcome = each_deison[5].replace(" ", "")
         descrp = each_deison[8].split(' ', 2)[2][:190]
