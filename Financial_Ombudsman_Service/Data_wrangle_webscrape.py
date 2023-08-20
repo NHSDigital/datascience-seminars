@@ -403,8 +403,8 @@ def run():
 #%%
 
 #Step 1 - getting the link
-start_date = datetime.date(2023, 6, 1)
-end_date = datetime.date(2023, 6, 25)
+start_date = datetime.date(2023, 3, 1)
+end_date = datetime.date(2023, 3, 2)
 
 url_link_from_function = getting_URL_with_date_range(start_date, end_date)
 
@@ -414,4 +414,4 @@ complete_list = get_complete_desision_list(url_link_from_function)
 
 #%% Step 3 - getting the tweets
 
-file_name = saving_the_tweets(complete_list, url_link_from_function)
+#file_name = saving_the_tweets(complete_list, url_link_from_function)
