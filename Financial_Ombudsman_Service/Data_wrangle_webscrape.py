@@ -404,10 +404,11 @@ def run():
 
 #Step 1 - getting the link
 start_date = datetime.date(2023, 6, 1)
-end_date = datetime.date(2023, 6, 2)
+end_date = datetime.date(2023, 6, 25)
 
 url_link_from_function = getting_URL_with_date_range(start_date, end_date)
 
+#%% 
 #Step 2 - getting the data
 complete_list = get_complete_desision_list(url_link_from_function)
 
