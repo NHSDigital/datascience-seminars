@@ -1,6 +1,6 @@
 # Code of Conduct for NHS Digital
 
-Contributors to repositories hosted in NHS Digital are expected to follow the Contributor Covenant Code of Conduct, and those working within Government are also expected to follow the Civil Service Code.
+Contributors to repositories hosted in NHS Digital are expected to follow the [Contributor Covenant Code of Conduct][homepage], and those working within Government are also expected to follow the Civil Service Code.
 
 ## Civil Service Code
 
@@ -8,7 +8,7 @@ Contributors to repositories hosted in NHS Digital are expected to follow the Co
 
 ## Our Pledge
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
@@ -38,19 +38,17 @@ Community leaders have the right and responsibility to remove, edit, or reject c
 
 ## Scope
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported to the community leaders responsible for enforcement at datascience@nhs.net.
-All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported to the community leaders responsible for enforcement at datascience@nhs.net. All complaints will be reviewed and investigated promptly and fairly. See the [full enforcement guidelines](https://www.contributor-covenant.org/version/2/1/code_of_conduct/) for the steps that will be taken.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],[version 2.0](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html) and the `govcookiecutter` [Code of Conduct](https://github.com/best-practice-and-impact/govcookiecutter/blob/main/CODE_OF_CONDUCT.md).
+This Code of Conduct is adapted from the [Contributor Covenant][homepage],[version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html) and the `govcookiecutter` [Code of Conduct](https://github.com/best-practice-and-impact/govcookiecutter/blob/main/CODE_OF_CONDUCT.md).
 
 Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/diversity).
 

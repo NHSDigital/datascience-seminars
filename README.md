@@ -1,5 +1,7 @@
 # Data Science Seminars
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
+
 A repo to hold resources and code associated with the (formerly NHS Digital) NHS England Data Science team's technical learning sessions, referred to as 'seminars'.
 
 Data Science Seminars provide a regular opportunity for those in the NHS who are interested in data science, to share code, skills and knowledge, provide advice and guidance to each other and generally network and get to know each other.
