@@ -12,8 +12,8 @@ TODO: Add downgit link
 >
 > Samaritans suicide helpline: [116-123](tel:116123)
 >
-> Financial Help: [https://www.citizensadvice.org.uk/](https://www.citizensadvice.org.uk/)
-> Debt Advice: [https://www.stepchange.org/](https://www.stepchange.org/)
+> Financial Help: [https://www.citizensadvice.org.uk/](https://www.citizensadvice.org.uk/) \
+> Debt Advice: [https://www.stepchange.org/](https://www.stepchange.org/) \
 > Go directly via the links. Do not use search engines 
 
 
