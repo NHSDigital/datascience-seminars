@@ -1,37 +1,18 @@
 import pandas as pd
-import os
 from nltk.corpus import stopwords
 import bs4
 import requests
 from io import BytesIO
-import boto3
 import PyPDF2
 from nltk.tokenize import word_tokenize
-import logging
 from nltk.tokenize import RegexpTokenizer
 import re
 import string
-#from datetime import datetime
 import datetime
 import gensim
-from gensim.utils import simple_preprocess
-from gensim.parsing.preprocessing import STOPWORDS
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
-from nltk.stem.porter import *
-import nltk
 all_stopwords = stopwords.words('english')
 stemmer = SnowballStemmer("english")
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-
-# These are pre-determined for now but can be overwritten
-BANKING_CODES = {
-    "Barclays": 0,
-    "Natwest": 23,
-    "Nationwide": 4
-}
 
 #hi
 # Test URL for FOS
@@ -40,60 +21,6 @@ url_link = 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombuds
 
 
 # You can see that you can use the search within the parameters of the URL
-
-
-def determine_banking_codes(use_specified: bool = True, additional_key_values: dict = {}):
-    """
-    Function that can scrap the FOS website for the banking codes and keys
-    
-    :param use_specified: Bool, use default, pre-specified banking code
-    :param additional_key_values: dict, if we use pre-specified code, we can add extra key and values
-    :return: dict, key and value of bank and banking code
-    """
-
-
-    if use_specified:
-        banking_codes = BANKING_CODES
-        if len(additional_key_values) > 0:
-            for key, value in additional_key_values:
-                banking_codes[key] = value
-    else:
-        # Need to add a webscraping function tograb from FOS website
-        print("Need to implement")
-
-
-    return banking_codes
-
-
-def upheld_vs_not_upheld(banking_codes: dict) -> pd.DataFrame:
-    """
-    Function to grab the upheld vs not upheld cases
-
-    :param banking_codes: dict, codes of the banks
-    :return: pd.DataFrame
-    """
-    
-    if len(banking_codes) == 0:
-        logger.error("No banking codes")
-        raise
-
-
-    search_results = {}
-
-
-    for key, value in banking_codes.items():
-        logger.info("Bank: %s - Start", key)
-        search_results[key] = {}
-        search_results[key]["upheld"] = obtain_number_results(url=BASE_URL, banking_code=str(value), is_upheld=True)
-        search_results[key]["not_upheld"] = obtain_number_results(url=BASE_URL, banking_code=str(value), is_upheld=False)
-        search_results[key]["proportion"] = search_results[key]["upheld"]/(search_results[key]["not_upheld"] + search_results[key]["upheld"])
-        logger.info("Bank: %s - End", key)
-
-
-    df = pd.DataFrame(search_results).T
-
-
-    return df
 
 
 def get_info_as_soup(url_link: str):
