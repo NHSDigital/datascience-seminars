@@ -410,6 +410,10 @@ url_link_from_function = getting_URL_with_date_range(start_date, end_date)
 
 #%% 
 #Step 2 - getting the data
+
+example_of_soup = get_info_as_soup(url_link_from_function)
+example_of_soup = example_of_soup.prettify()
+
 complete_list = get_complete_desision_list(url_link_from_function)
 
 #%% Step 3 - getting the tweets
