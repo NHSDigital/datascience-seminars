@@ -303,14 +303,16 @@ def saving_the_tweets(complete_list_of_deisions, url_link):
     
     return
 
-def getting_URL_with_date_range(start_date, end_date):
+def getting_URL_with_date_range(start_date, end_date, search_term = 'scam'):
     
     #Seting up the URL strings
     start_date_sting = start_date.strftime('%Y-%m-%d')
     end_date_sting = end_date.strftime('%Y-%m-%d')
     
     websrcape_URL = (
-        'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=' +
+        'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=' + 
+        search_term + 
+        '&IndustrySectorID%5B1%5D=1&DateFrom=' +
         start_date_sting +
         '&DateTo=' +
         end_date_sting +
