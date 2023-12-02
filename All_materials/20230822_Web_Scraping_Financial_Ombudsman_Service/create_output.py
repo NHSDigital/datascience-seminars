@@ -20,4 +20,13 @@ complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
 
 #%% Step 3 - getting the tweets
 
-#file_name = saving_the_tweets(complete_list, url_link_from_function)
+_ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
+
+#%% 
+
+output_table = summary_table.copy()
+output_table.rename(columns=config['table'],inplace=True)
+output_table = output_table[list(config['table'].values())]
+
+#Collect a sample
+output_table = output_table.iloc[:9]

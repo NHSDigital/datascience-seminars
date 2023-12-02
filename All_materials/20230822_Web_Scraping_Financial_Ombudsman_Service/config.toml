@@ -3,4 +3,13 @@ project_name = "fos_web"
 [web]
 seach_term = "scam"
 start_date = "2023-06-01"
-end_date = "2023-06-20"
+end_date = "2023-06-02"
+
+[table]
+ref = 'Ref'
+date = 'Date'
+bank = 'Bank'
+scale_of_lost = 'Scale of Lost'
+outcome = 'Outcome'
+CRM = 'CRM'
+summary = 'Sample'

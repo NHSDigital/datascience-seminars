@@ -79,7 +79,7 @@ def wrangle_each_deision_list(desison_list):
             'all_text': pdf_text,
             'CRM':was_CRM_mentioned(pdf_text)
             }
-        print(dict_each_deision)
+        
         list_of_machine_readable_deision = list_of_machine_readable_deision + [dict_each_deision]
         
     return list_of_machine_readable_deision
@@ -256,12 +256,15 @@ def getting_a_single_tweet_from_complint(single_series):
     #Crop
     string_consturction = string_consturction[:279]
     
-    return string_consturction
+    return string_consturction, text_without_stopwords[:400]
 
-def list_of_tweets(list_of_complants):
+def list_of_summary(list_of_complants):
     
     #Convert to pandas
     fos_scam_records = pd.DataFrame.from_dict(list_of_complants)
+    
+    #Adding summary
+    fos_scam_records['summary'] = ''
     
     seprator_sting = '\n' + '\n' + '--------------------------------' + '\n' + '\n'
     
@@ -271,16 +274,18 @@ def list_of_tweets(list_of_complants):
     
     for index, each_row in fos_scam_records.iterrows():
         
-        tweet_string = getting_a_single_tweet_from_complint(each_row)
+        tweet_string, summary_text = getting_a_single_tweet_from_complint(each_row)
         
         list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
         
         list_of_strings = list_of_strings + [tweet_string]
         
-    #Getting a pandas data frame
-    pandas_of_tweets = pd.DataFrame(list_of_strings, columns=['list_of_tweets'])
+        fos_scam_records.at[index,'summary'] = summary_text
         
-    return list_of_all_tweets, pandas_of_tweets
+    #Getting a pandas data frame
+    pandas_of_tweets = pd.DataFrame(list_of_strings, columns=['list_of_summary'])
+        
+    return list_of_all_tweets, pandas_of_tweets, fos_scam_records
 
 def saving_the_tweets(complete_list_of_deisions, url_link):
     
@@ -289,7 +294,7 @@ def saving_the_tweets(complete_list_of_deisions, url_link):
     #Crop the start
     name_of_file = name_of_file[75:]
     
-    to_tweet, pandas_of_tweets = list_of_tweets(complete_list_of_deisions)
+    to_tweet, pandas_of_tweets = list_of_summary(complete_list_of_deisions)
     
     #Need to remove some uni code characters
     to_tweet = to_tweet.replace('\uf0b7', '')
