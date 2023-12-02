@@ -36,11 +36,11 @@ The inputs of the function are the date range when the complaints were made and 
 
 ### Web scraping
 
-The web scraping is done using the function:
+The web scraping is perform using the function:
 ```
 complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
 ```
-There are hardcoded parameters to extract the relevant html data from the web data.
+There are hardcoded parameters to extract the relevant html data from the webpage.
 
 ### Wrangling and Analysis
 
@@ -49,7 +49,7 @@ The wrangling and analysis are perform using:
 ```
 _ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
 ```
-The function takes all relevant data from meta data on the html and text form PDF to a Pandas table.
+The function takes all relevant data from meta data on the html and text form the PDF to a Pandas table.
 
 ### Output
 
