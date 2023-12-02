@@ -32,7 +32,7 @@ The construction of the URL link is made using the function:
 ```
 url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['seach_term']) 
 ```
-The inputs of the function are the date range when the complaints were made and the screech term use to find the relevant complaints. The parameters can be found in the `config.tmol` file.
+The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.tmol` file.
 
 ### Web scraping
 
