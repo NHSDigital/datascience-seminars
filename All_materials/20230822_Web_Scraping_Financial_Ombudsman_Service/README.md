@@ -1,4 +1,4 @@
-Web Scraping in Financial Ombudsman Service Data
+Web Scraping Complaints from the Financial Ombudsman Service
 =============================
 
 #### *Kenneth Quan*
