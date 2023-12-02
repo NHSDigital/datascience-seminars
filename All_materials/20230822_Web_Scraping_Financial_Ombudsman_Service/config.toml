@@ -13,3 +13,6 @@ scale_of_lost = 'Scale of Lost'
 outcome = 'Outcome'
 CRM = 'CRM'
 summary = 'Sample'
+
+[file]
+name = 'output_table.md'

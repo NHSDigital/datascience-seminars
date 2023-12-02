@@ -30,3 +30,9 @@ output_table = output_table[list(config['table'].values())]
 
 #Collect a sample
 output_table = output_table.iloc[:9]
+mk_table = output_table.to_markdown().replace('\uf0b7', '')
+
+#Save the file
+with open(config['file']['name'], "w") as text_file:
+    text_file.write(mk_table)
+    text_file.close()
