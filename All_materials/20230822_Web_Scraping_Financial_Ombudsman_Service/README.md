@@ -22,7 +22,6 @@ This repo is designed as training material on the web scraping, data wrangling(a
 <br>
 The work is NOT endorsed by the Financial Ombudsman Service.
 
-
 ## How to use the code
 The main code is found in `create_output.py`. The script contains the following steps.
 
@@ -54,7 +53,10 @@ The function takes all relevant data from meta data on the html and text form PD
 
 ### Output
 
-The resulting output can be found in `output_table.md`
+The resulting output can be found in `output_table.md`. <br>
+<br>
+For brevity, the main PDF text has been removed before publishing
+
 
 
 ## Example Output
