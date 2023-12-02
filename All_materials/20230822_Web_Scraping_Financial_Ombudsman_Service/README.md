@@ -18,6 +18,9 @@ TODO: Add downgit link
 > Do not use search engines. Go directly via the links.
 
 ## Intoduction
+This repo is designed as training material on the web scraping, data wrangling and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/). <br>
+The work is not endorsed by the Financial Ombudsman Service. <br>
+
 
 ## How to use the project
 
