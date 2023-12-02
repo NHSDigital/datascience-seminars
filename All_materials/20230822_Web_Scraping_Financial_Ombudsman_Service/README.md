@@ -22,7 +22,7 @@ This repo is designed as training material on the web scraping, data wrangling a
 The work is not endorsed by the Financial Ombudsman Service. <br>
 
 
-## How to use the project
+## How to use the code
 
 
 ## Example Output
