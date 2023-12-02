@@ -49,7 +49,7 @@ The wrangling and analysis are perform using:
 ```
 _ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
 ```
-The function takes all relevant data from meta data on the html and text form the PDF to a Pandas table.
+The function takes all relevant data from meta data on the html and text from the PDF to a Pandas table.
 
 ### Output
 
@@ -59,8 +59,8 @@ For brevity, the main PDF text has been removed before publishing.
 
 
 ## Example Output
-The following is example of a table outputted in by the `create_output.py` script. The columns mean the following <br>
-- Ref – unique compliant reference 
+The following is example of a table outputted in by the `create_output.py` script. The columns mean the following: <br>
+- Ref – Unique compliant reference 
 - Date – Date of complaint
 - Bank – Financial Institutions which the complaint was made against
 - Scale of Lost – The scale of the largest of sum of money mentioned in the complaint
