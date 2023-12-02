@@ -11,7 +11,7 @@ start_date = datetime.strptime(config['web']['start_date'],
 end_date = datetime.strptime(config['web']['end_date'], 
                                '%Y-%m-%d').date()
 
-url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date)
+url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['seach_term'])
 
 #%% 
 #Step 2 - getting the data
