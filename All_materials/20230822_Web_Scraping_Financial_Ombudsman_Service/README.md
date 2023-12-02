@@ -18,7 +18,7 @@ TODO: Add downgit link
 > Do not use search engines. Go directly via the links.
 
 ## Intoduction
-This repo is designed as training material on the web scraping, data wrangling(also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/). <br>
+This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/). <br>
 <br>
 The work is NOT endorsed by the Financial Ombudsman Service.
 
@@ -55,8 +55,7 @@ The function takes all relevant data from meta data on the html and text form PD
 
 The resulting output can be found in `output_table.md`. <br>
 <br>
-For brevity, the main PDF text has been removed before publishing
-
+For brevity, the main PDF text has been removed before publishing.
 
 
 ## Example Output
@@ -68,6 +67,7 @@ The following is example of a table outputted in by the `create_output.py` scrip
 - Outcome – If the complaint was upheld
 - CRM – Did the complaint mentioned CRM meaning [Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/)
 - Sample – A sampled of the complaint from the main body of text
+
 
 | | Ref | Date | Bank | Scale of Lost | Outcome | CRM | Sample |
 |---:|:------------|:--------------------|:---------------------|:----------------|:----------|:------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
