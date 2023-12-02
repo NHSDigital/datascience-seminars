@@ -1,6 +1,7 @@
 from src.web_scraping_and_data_wrangling import fos_web_scrap
 from src.utils.file_paths import get_config
 from datetime import datetime
+import re
 
 config = get_config("config.toml") 
 
@@ -31,6 +32,7 @@ output_table = output_table[list(config['table'].values())]
 #Collect a sample
 output_table = output_table.iloc[:9]
 mk_table = output_table.to_markdown().replace('\uf0b7', '')
+mk_table = re.sub(' +', ' ', mk_table)
 
 #Save the file
 with open(config['file']['name'], "w") as text_file:
