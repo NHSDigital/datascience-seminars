@@ -16,10 +16,7 @@ url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, e
 #%% 
 #Step 2 - getting the data
 
-example_of_soup = fos_web_scrap.get_info_as_soup(url_link_from_function)
-example_of_soup = example_of_soup.prettify()
-
-complete_list = get_complete_desision_list(url_link_from_function)
+complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
 
 #%% Step 3 - getting the tweets
 

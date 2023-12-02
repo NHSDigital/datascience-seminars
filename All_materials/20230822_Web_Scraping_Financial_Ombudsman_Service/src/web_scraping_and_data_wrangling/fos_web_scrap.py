@@ -79,7 +79,7 @@ def wrangle_each_deision_list(desison_list):
             'all_text': pdf_text,
             'CRM':was_CRM_mentioned(pdf_text)
             }
-        
+        print(dict_each_deision)
         list_of_machine_readable_deision = list_of_machine_readable_deision + [dict_each_deision]
         
     return list_of_machine_readable_deision
@@ -312,11 +312,11 @@ def getting_URL_with_date_range(start_date, end_date, search_term = 'scam'):
     websrcape_URL = (
         'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=' + 
         search_term + 
-        '&IndustrySectorID%5B1%5D=1&DateFrom=' +
+        '&DateFrom=' +
         start_date_sting +
         '&DateTo=' +
         end_date_sting +
-        '&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance'
+        '&Sort=relevance'
         )
     
     return websrcape_URL
@@ -331,19 +331,19 @@ def run():
 
 #%%
 
-#Step 1 - getting the link
-start_date = datetime.date(2023, 3, 1)
-end_date = datetime.date(2023, 3, 2)
+# #Step 1 - getting the link
+# start_date = datetime.date(2023, 3, 1)
+# end_date = datetime.date(2023, 3, 2)
 
-url_link_from_function = getting_URL_with_date_range(start_date, end_date)
+# url_link_from_function = getting_URL_with_date_range(start_date, end_date)
 
-#%% 
-#Step 2 - getting the data
+# #%% 
+# #Step 2 - getting the data
 
-example_of_soup = get_info_as_soup(url_link_from_function)
-example_of_soup = example_of_soup.prettify()
+# example_of_soup = get_info_as_soup(url_link_from_function)
+# example_of_soup = example_of_soup.prettify()
 
-complete_list = get_complete_desision_list(url_link_from_function)
+# complete_list = get_complete_desision_list(url_link_from_function)
 
 #%% Step 3 - getting the tweets
 
