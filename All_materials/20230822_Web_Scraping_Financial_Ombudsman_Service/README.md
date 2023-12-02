@@ -26,18 +26,35 @@ The work is NOT endorsed by the Financial Ombudsman Service.
 ## How to use the code
 The main code is found in `create_output.py`. The script contains the following steps.
 
-# Constructing the URL link
+### Constructing the URL link
 
 The construction of the URL link is made using the function:
 
 ```
 url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['seach_term']) 
 ```
-The inputs of the function are the date range when the complaints were made and the screech term use to find the relevant complaints. The parameters can be found in the ` config.tmol` file.
+The inputs of the function are the date range when the complaints were made and the screech term use to find the relevant complaints. The parameters can be found in the `config.tmol` file.
 
-# Web scraping
+### Web scraping
 
-# Wrangling and Analysis
+The web scraping is done using the function:
+```
+complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
+```
+There are hardcoded parameters to extract the relevant html data from the web data.
+
+### Wrangling and Analysis
+
+The wrangling and analysis are perform using:
+
+```
+_ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
+```
+The function takes all relevant data from meta data on the html and text form PDF to a Pandas table.
+
+### Output
+
+The resulting output can be found in `output_table.md`
 
 
 ## Example Output

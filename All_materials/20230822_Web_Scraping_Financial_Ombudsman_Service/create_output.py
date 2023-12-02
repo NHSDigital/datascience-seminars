@@ -24,12 +24,10 @@ _ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
 
 #%% 
 
+#Collect a sample
 output_table = summary_table.copy()
 output_table.rename(columns=config['table'],inplace=True)
 output_table = output_table[list(config['table'].values())]
-
-#Collect a sample
-output_table = output_table.iloc[:9]
 mk_table = output_table.to_markdown().replace('\uf0b7', '')
 
 #Save the file
