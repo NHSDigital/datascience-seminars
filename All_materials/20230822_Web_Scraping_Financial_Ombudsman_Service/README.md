@@ -2,8 +2,6 @@
 
 **Kenneth Quan**
 
-<kenneth.quan1@nhs.net>
-
 TODO: Add downgit link
 
 > [!WARNING]  
