@@ -66,7 +66,7 @@ The following is example of a table outputted in by the `create_output.py` scrip
 
 - Ref – Unique compliant reference
 - Date – Date of complaint
-- Bank – Financial Institutions which the complaint was made against
+- Bank – Financial institutions against which the complaint was made
 - Scale of Lost – The scale of the largest of sum of money mentioned in the complaint
 - Outcome – If the complaint was upheld
 - CRM – Did the complaint mentioned CRM meaning [Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/)
