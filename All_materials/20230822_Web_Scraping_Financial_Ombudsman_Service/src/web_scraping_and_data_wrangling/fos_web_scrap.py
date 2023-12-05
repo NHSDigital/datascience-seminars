@@ -12,78 +12,81 @@ from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer, word_tokenize
 
-all_stopwords = stopwords.words('english')
+all_stopwords = stopwords.words("english")
 stemmer = SnowballStemmer("english")
 
-#hi
+# hi
 # Test URL for FOS
-#BASE_URL = "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&Business={banking_code}&DateFrom=2022-01-01&DateTo=2022-06-01&{upheld_code}&Sort=relevance"
-url_link = 'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=2023-01-01&DateTo=2023-06-11&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance'
+# BASE_URL = "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&Business={banking_code}&DateFrom=2022-01-01&DateTo=2022-06-01&{upheld_code}&Sort=relevance"
+url_link = "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=2023-01-01&DateTo=2023-06-11&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance"
 
 
 # You can see that you can use the search within the parameters of the URL
 
 
 def get_info_as_soup(url_link: str):
-    #Getting the request
-    
+    # Getting the request
+
     res = requests.get(url_link)
-    
-    #Getting into soup
+
+    # Getting into soup
     soup = bs4.BeautifulSoup(res.text, "html.parser")
-    
+
     return soup
 
 
 def get_list_of_deision(soup):
-    #From the soup to get coorect info
-    
-    li_section = soup.find_all('li')
-    
+    # From the soup to get coorect info
+
+    li_section = soup.find_all("li")
+
     desison_list = []
 
     for each_li in li_section:
-        
+
         text_on_web = each_li.get_text()
-        
-        if 'Decision Reference' in text_on_web:
-            
-            desison_list = desison_list + [text_on_web.split('\n')]
-            
+
+        if "Decision Reference" in text_on_web:
+
+            desison_list = desison_list + [text_on_web.split("\n")]
+
     return desison_list
 
+
 def wrangle_each_deision_list(desison_list):
-    
+
     list_of_machine_readable_deision = []
-    
+
     for each_deison in desison_list:
-        
-        #Wrangle the list
-        each_deison = [re.sub(' +', ' ', x) for x in each_deison if
-                       (x != '')]
-        
-        #Getting the info
+
+        # Wrangle the list
+        each_deison = [re.sub(" +", " ", x) for x in each_deison if (x != "")]
+
+        # Getting the info
         ref_number = each_deison[0][19:]
-        date_of_desision = datetime.datetime.strptime(each_deison[1], '%d %b %Y')
+        date_of_desision = datetime.datetime.strptime(each_deison[1], "%d %b %Y")
         bank = each_deison[2]
         outcome = each_deison[5].replace(" ", "")
-        descrp = each_deison[8].split(' ', 2)[2][:190]
+        descrp = each_deison[8].split(" ", 2)[2][:190]
         pdf_text = getting_pdf_text(ref_number)
-        
+
         dict_each_deision = {
-            'ref':ref_number,
-            'date':date_of_desision,
-            'scale_of_lost': finding_scale_of_money(pdf_text),
-            'bank':bank,
-            'outcome':outcome,
-            'background':descrp,
-            'all_text': pdf_text,
-            'CRM':was_CRM_mentioned(pdf_text)
-            }
-        
-        list_of_machine_readable_deision = list_of_machine_readable_deision + [dict_each_deision]
-        
+            "ref": ref_number,
+            "date": date_of_desision,
+            "scale_of_lost": finding_scale_of_money(pdf_text),
+            "bank": bank,
+            "outcome": outcome,
+            "background": descrp,
+            "all_text": pdf_text,
+            "CRM": was_CRM_mentioned(pdf_text),
+        }
+
+        list_of_machine_readable_deision = list_of_machine_readable_deision + [
+            dict_each_deision
+        ]
+
     return list_of_machine_readable_deision
+
 
 def getting_number_of_links_and_soup(soup, url_link):
     """
@@ -103,230 +106,260 @@ def getting_number_of_links_and_soup(soup, url_link):
         The list the URLs
 
     """
-    
-    #Getting the number of pages
+
+    # Getting the number of pages
     out = soup.find_all("div", {"class": "search-results-holder"})[0]
     number_of_pages = int(out.text.split("\n")[-5].split()[-1])
-    
-    #Getting the URL
-    list_of_urls = [url_link + '&Start=' + str(x*10) for x in range(1,number_of_pages)]
+
+    # Getting the URL
+    list_of_urls = [
+        url_link + "&Start=" + str(x * 10) for x in range(1, number_of_pages)
+    ]
     list_of_urls = [url_link] + list_of_urls
-    
+
     return list_of_urls, number_of_pages
 
+
 def get_complete_desision_list(url_link):
-    
-    #Getting all the 0th soup
+
+    # Getting all the 0th soup
     soup = get_info_as_soup(url_link)
-    
+
     links_for_all_lists, _ = getting_number_of_links_and_soup(soup, url_link)
-    
+
     list_of_deisions = []
-    
+
     for each_url in links_for_all_lists:
-        
+
         each_soup = get_info_as_soup(each_url)
-        
+
         desison_list = get_list_of_deision(each_soup)
 
         list_of_machine_readable_deision = wrangle_each_deision_list(desison_list)
-        
+
         list_of_deisions = list_of_deisions + list_of_machine_readable_deision
-        
+
     return list_of_deisions
 
+
 def getting_pdf_text(ref_complaint):
-    
-    #Getting the pdf link
-    url_pdf = 'https://www.financial-ombudsman.org.uk/decision/' + ref_complaint + '.pdf'
-    
-    #request the download of the pdf and getting the text
+
+    # Getting the pdf link
+    url_pdf = (
+        "https://www.financial-ombudsman.org.uk/decision/" + ref_complaint + ".pdf"
+    )
+
+    # request the download of the pdf and getting the text
     response = requests.get(url_pdf)
     my_raw_data = response.content
-    
-    all_text = ''
-    
+
+    all_text = ""
+
     with BytesIO(my_raw_data) as data:
         read_pdf = PyPDF2.PdfReader(data)
 
         for page in range(len(read_pdf.pages)):
             each_page_text = read_pdf.pages[page].extract_text()
             all_text = all_text + each_page_text
-            
+
     return all_text
 
+
 def getting_numbers_from_string(string_with_numbers):
-    
+
     numbers_only = [x for x in string_with_numbers if x.isdigit()]
-    numbers_only = ''.join(numbers_only)
-    
+    numbers_only = "".join(numbers_only)
+
     return numbers_only
 
+
 def finding_scale_of_money(string_text):
-    
-    #Need to seperation the stings
+
+    # Need to seperation the stings
     string_splint = string_text.split()
-    
-    money_mentions = [x for x in string_splint if '£' in x]
+
+    money_mentions = [x for x in string_splint if "£" in x]
     money_mentions = [getting_numbers_from_string(x) for x in money_mentions]
-    
+
     multple_of_lost = [len(x) for x in money_mentions]
-    
+
     if multple_of_lost:
-        
-        #Need to have a scale format
-        string_scale = '10^' +  str(max(multple_of_lost)-1)
+
+        # Need to have a scale format
+        string_scale = "10^" + str(max(multple_of_lost) - 1)
         return string_scale
-    
+
     else:
-        
-        return '10^?'
-    
+
+        return "10^?"
+
+
 def was_CRM_mentioned(string_text):
-    
-    tokenizer = RegexpTokenizer(r'\w+')
-    
+
+    tokenizer = RegexpTokenizer(r"\w+")
+
     list_of_strings = tokenizer.tokenize(string_text.lower())
-    
-    mentioned_CRM = [x for x in list_of_strings if 'crm' in x]
-    
+
+    mentioned_CRM = [x for x in list_of_strings if "crm" in x]
+
     if mentioned_CRM:
-        
+
         return True
-    
+
     else:
-        
+
         return False
-    
-    
+
+
 def finding_scale_of_lost_in_complaint(ref_complaint):
-    
+
     all_text = getting_pdf_text(ref_complaint)
-    
+
     scale_of_lost = finding_scale_of_money(all_text)
-    
+
     return scale_of_lost
 
+
 def is_CRM_used(binary_take):
-    
+
     if binary_take:
-        return 'YES'
+        return "YES"
     else:
-        return 'NO'
-    
+        return "NO"
+
+
 def lemmatize_stemming(text):
-    return stemmer.stem(WordNetLemmatizer().lemmatize(text, pos='v'))
+    return stemmer.stem(WordNetLemmatizer().lemmatize(text, pos="v"))
+
 
 # Tokenize and lemmatize
 def preprocess(text):
-    result=[]
-    for token in gensim.utils.simple_preprocess(text) :
+    result = []
+    for token in gensim.utils.simple_preprocess(text):
         if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
             result.append(lemmatize_stemming(token))
-            
+
     return result
 
+
 def date_format_as_string_in_tweet(date_info):
-    
-    #getting the date
+
+    # getting the date
     date_of_compl = date_info.strftime("%m%d%y")
-    
+
     return date_of_compl
 
+
 def getting_a_single_tweet_from_complint(single_series):
-    
-    #Need to contruct the extract
-    full_text_complaint = single_series['all_text']
+
+    # Need to contruct the extract
+    full_text_complaint = single_series["all_text"]
     text_without_stopwords = word_tokenize(full_text_complaint)
-    text_without_stopwords = [word for word in text_without_stopwords if not word in all_stopwords]
+    text_without_stopwords = [
+        word for word in text_without_stopwords if not word in all_stopwords
+    ]
     text_without_stopwords = (" ").join(text_without_stopwords)
-    
-    #Need to get a 1/4 of the point
-    index_start = round(len(text_without_stopwords)/4)
+
+    # Need to get a 1/4 of the point
+    index_start = round(len(text_without_stopwords) / 4)
     text_without_stopwords = text_without_stopwords[index_start:]
-    
+
     string_consturction = (
-        date_format_as_string_in_tweet(single_series['date']) + '\n' +
-        single_series['ref'] + '\n' + 
-        '~£' + single_series['scale_of_lost'] + '\n' +
-        single_series['outcome'] + '\n' +
-        'CRM?' + is_CRM_used(single_series['CRM']) + '\n' +
-        '...' + text_without_stopwords
-        )
-    
-    #Crop
+        date_format_as_string_in_tweet(single_series["date"])
+        + "\n"
+        + single_series["ref"]
+        + "\n"
+        + "~£"
+        + single_series["scale_of_lost"]
+        + "\n"
+        + single_series["outcome"]
+        + "\n"
+        + "CRM?"
+        + is_CRM_used(single_series["CRM"])
+        + "\n"
+        + "..."
+        + text_without_stopwords
+    )
+
+    # Crop
     string_consturction = string_consturction[:279]
-    
+
     return string_consturction, text_without_stopwords[:400]
 
+
 def list_of_summary(list_of_complants):
-    
-    #Convert to pandas
+
+    # Convert to pandas
     fos_scam_records = pd.DataFrame.from_dict(list_of_complants)
-    
-    #Adding summary
-    fos_scam_records['summary'] = ''
-    
-    seprator_sting = '\n' + '\n' + '--------------------------------' + '\n' + '\n'
-    
+
+    # Adding summary
+    fos_scam_records["summary"] = ""
+
+    seprator_sting = "\n" + "\n" + "--------------------------------" + "\n" + "\n"
+
     list_of_all_tweets = seprator_sting
-    
+
     list_of_strings = []
-    
+
     for index, each_row in fos_scam_records.iterrows():
-        
+
         tweet_string, summary_text = getting_a_single_tweet_from_complint(each_row)
-        
+
         list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
-        
+
         list_of_strings = list_of_strings + [tweet_string]
-        
-        fos_scam_records.at[index,'summary'] = summary_text
-        
-    #Getting a pandas data frame
-    pandas_of_tweets = pd.DataFrame(list_of_strings, columns=['list_of_summary'])
-        
+
+        fos_scam_records.at[index, "summary"] = summary_text
+
+    # Getting a pandas data frame
+    pandas_of_tweets = pd.DataFrame(list_of_strings, columns=["list_of_summary"])
+
     return list_of_all_tweets, pandas_of_tweets, fos_scam_records
 
+
 def saving_the_tweets(complete_list_of_deisions, url_link):
-    
-    #Getting the save file name 
-    name_of_file = url_link.translate(str.maketrans('', '', string.punctuation))
-    #Crop the start
+
+    # Getting the save file name
+    name_of_file = url_link.translate(str.maketrans("", "", string.punctuation))
+    # Crop the start
     name_of_file = name_of_file[75:]
-    
+
     to_tweet, pandas_of_tweets = list_of_summary(complete_list_of_deisions)
-    
-    #Need to remove some uni code characters
-    to_tweet = to_tweet.replace('\uf0b7', '')
-    
-    #Saving the string to text
+
+    # Need to remove some uni code characters
+    to_tweet = to_tweet.replace("\uf0b7", "")
+
+    # Saving the string to text
     with open(name_of_file + ".txt", "w") as text_file:
         text_file.write(to_tweet)
-    
-    #Saving CSV
-    pandas_of_tweets = pandas_of_tweets.to_csv(name_of_file + ".csv",index=False,encoding='utf-8-sig')
-    
+
+    # Saving CSV
+    pandas_of_tweets = pandas_of_tweets.to_csv(
+        name_of_file + ".csv", index=False, encoding="utf-8-sig"
+    )
+
     return
 
-def getting_URL_with_date_range(start_date, end_date, search_term = 'scam'):
-    
-    #Seting up the URL strings
-    start_date_sting = start_date.strftime('%Y-%m-%d')
-    end_date_sting = end_date.strftime('%Y-%m-%d')
-    
+
+def getting_URL_with_date_range(start_date, end_date, search_term="scam"):
+
+    # Seting up the URL strings
+    start_date_sting = start_date.strftime("%Y-%m-%d")
+    end_date_sting = end_date.strftime("%Y-%m-%d")
+
     websrcape_URL = (
-        'https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=' + 
-        search_term + 
-        '&DateFrom=' +
-        start_date_sting +
-        '&DateTo=' +
-        end_date_sting +
-        '&Sort=relevance'
-        )
-    
+        "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword="
+        + search_term
+        + "&DateFrom="
+        + start_date_sting
+        + "&DateTo="
+        + end_date_sting
+        + "&Sort=relevance"
+    )
+
     return websrcape_URL
-    
+
+
 def run():
     """
     Main orchestration function
