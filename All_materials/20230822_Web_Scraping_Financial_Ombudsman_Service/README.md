@@ -59,7 +59,9 @@ The resulting output can be found in `output_table.md`. <br>
 For brevity, the main PDF text has been removed before publishing.
 
 ## Example Output
-The following is example of a table outputted in by the `create_output.py` script. The columns mean the following: <br>
+
+The following is example of a table outputted in by the `create_output.py` script. The columns mean the following:
+
 - Ref – Unique compliant reference 
 - Date – Date of complaint
 - Bank – Financial Institutions which the complaint was made against
