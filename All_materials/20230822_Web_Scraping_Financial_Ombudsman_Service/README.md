@@ -31,7 +31,7 @@ The main code is found in `create_output.py`. The script contains the following 
 The construction of the URL link is made using the function:
 
 ```python
-url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['search_term']) 
+url_link_from_function = fos_web_scrape.getting_URL_with_date_range(start_date, end_date, config['web']['search_term']) 
 ```
 
 The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.toml` file.
@@ -41,7 +41,7 @@ The inputs of the function are the date range when the complaints were made and 
 The web scraping is performed using the function:
 
 ```python
-complete_list = fos_web_scrap.get_complete_decision_list(url_link_from_function)
+complete_list = fos_web_scrape.get_complete_decision_list(url_link_from_function)
 ```
 
 There are hardcoded parameters to extract the relevant html data from the webpage.
@@ -51,7 +51,7 @@ There are hardcoded parameters to extract the relevant html data from the webpag
 The wrangling and analysis are performed using:
 
 ```python
-_ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
+_ , _, summary_table = fos_web_scrape.list_of_summary(complete_list)
 ```
 
 The function takes all relevant data from meta data on the html and text from the PDF to a Pandas table.
