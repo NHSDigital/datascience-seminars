@@ -15,4 +15,4 @@ CRM = "CRM"
 summary = "Sample"
 
 [file]
-name = "output_table.md"
+name = "table_of_complaints.md"
