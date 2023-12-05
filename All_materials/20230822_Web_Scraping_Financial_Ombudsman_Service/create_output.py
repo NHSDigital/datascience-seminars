@@ -9,10 +9,10 @@ config = get_config("config.toml")
 # Step 1 - getting the link
 start_date = datetime.strptime(config["web"]["start_date"], "%Y-%m-%d").date()
 end_date = datetime.strptime(config["web"]["end_date"], "%Y-%m-%d").date()
+search_term = config["web"]["search_term"]
 
 url_link_from_function = fos_web_scrape.getting_URL_with_date_range(
-    start_date, end_date, config["web"]["search_term"]
-)
+    start_date, end_date, search_term)
 
 #%%
 # Step 2 - getting the data

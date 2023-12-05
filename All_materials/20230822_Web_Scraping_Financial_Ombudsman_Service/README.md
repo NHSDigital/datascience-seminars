@@ -29,7 +29,7 @@ The main code is found in `create_output.py`. The script contains the following 
 The construction of the URL link is made using the function:
 
 ```python
-url_link_from_function = fos_web_scrape.getting_URL_with_date_range(start_date, end_date, config['web']['search_term']) 
+url_link_from_function = fos_web_scrape.getting_URL_with_date_range(start_date, end_date, search_term)
 ```
 
 The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.toml` file.
