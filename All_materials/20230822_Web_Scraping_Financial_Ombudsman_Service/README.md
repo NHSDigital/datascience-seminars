@@ -52,7 +52,7 @@ The wrangling and analysis are performed using:
 _ , _, summary_table = fos_web_scrape.list_of_summary(complete_list)
 ```
 
-The function takes all relevant data from meta data on the html and text from the PDF to a Pandas table.
+The function takes all relevant data from metadata in the html and text from the PDF to a Pandas table.
 
 ### Output
 
