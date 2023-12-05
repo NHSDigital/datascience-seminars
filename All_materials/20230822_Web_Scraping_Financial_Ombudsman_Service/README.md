@@ -45,7 +45,7 @@ There are hardcoded parameters to extract the relevant html data from the webpag
 
 ### Wrangling and Analysis
 
-The wrangling and analysis are perform using:
+The wrangling and analysis are performed using:
 
 ```
 _ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
