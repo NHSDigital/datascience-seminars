@@ -36,11 +36,11 @@ def get_info_as_soup(url_link: str):
 
 
 def get_list_of_decision(soup):
-    # From the soup to get coorect info
+    # From the soup to get correct info
 
     li_section = soup.find_all("li")
 
-    desison_list = []
+    decision_list = []
 
     for each_li in li_section:
 
@@ -48,16 +48,16 @@ def get_list_of_decision(soup):
 
         if "Decision Reference" in text_on_web:
 
-            desison_list = desison_list + [text_on_web.split("\n")]
+            decision_list = decision_list + [text_on_web.split("\n")]
 
-    return desison_list
+    return decision_list
 
 
-def wrangle_each_decision_list(desison_list):
+def wrangle_each_decision_list(decision_list):
 
     list_of_machine_readable_decision = []
 
-    for each_decision in desison_list:
+    for each_decision in decision_list:
 
         # Wrangle the list
         each_decision = [re.sub(" +", " ", x) for x in each_decision if (x != "")]
@@ -133,9 +133,9 @@ def get_complete_decision_list(url_link):
 
         each_soup = get_info_as_soup(each_url)
 
-        desison_list = get_list_of_decision(each_soup)
+        decision_list = get_list_of_decision(each_soup)
 
-        list_of_machine_readable_decision = wrangle_each_decision_list(desison_list)
+        list_of_machine_readable_decision = wrangle_each_decision_list(decision_list)
 
         list_of_decisions = list_of_decisions + list_of_machine_readable_decision
 
@@ -175,18 +175,18 @@ def getting_numbers_from_string(string_with_numbers):
 
 def finding_scale_of_money(string_text):
 
-    # Need to seperation the stings
+    # Need to separation the stings
     string_splint = string_text.split()
 
     money_mentions = [x for x in string_splint if "£" in x]
     money_mentions = [getting_numbers_from_string(x) for x in money_mentions]
 
-    multple_of_lost = [len(x) for x in money_mentions]
+    multiple_of_lost = [len(x) for x in money_mentions]
 
-    if multple_of_lost:
+    if multiple_of_lost:
 
         # Need to have a scale format
-        string_scale = "10^" + str(max(multple_of_lost) - 1)
+        string_scale = "10^" + str(max(multiple_of_lost) - 1)
         return string_scale
 
     else:
@@ -250,9 +250,9 @@ def date_format_as_string_in_tweet(date_info):
     return date_of_compl
 
 
-def getting_a_single_tweet_from_complint(single_series):
+def getting_a_single_tweet_from_complaint(single_series):
 
-    # Need to contruct the extract
+    # Need to construct the extract
     full_text_complaint = single_series["all_text"]
     text_without_stopwords = word_tokenize(full_text_complaint)
     text_without_stopwords = [
@@ -264,7 +264,7 @@ def getting_a_single_tweet_from_complint(single_series):
     index_start = round(len(text_without_stopwords) / 4)
     text_without_stopwords = text_without_stopwords[index_start:]
 
-    string_consturction = (
+    string_construction = (
         date_format_as_string_in_tweet(single_series["date"])
         + "\n"
         + single_series["ref"]
@@ -282,30 +282,30 @@ def getting_a_single_tweet_from_complint(single_series):
     )
 
     # Crop
-    string_consturction = string_consturction[:279]
+    string_construction = string_construction[:279]
 
-    return string_consturction, text_without_stopwords[:400]
+    return string_construction, text_without_stopwords[:400]
 
 
-def list_of_summary(list_of_complants):
+def list_of_summary(list_of_complaints):
 
     # Convert to pandas
-    fos_scam_records = pd.DataFrame.from_dict(list_of_complants)
+    fos_scam_records = pd.DataFrame.from_dict(list_of_complaints)
 
     # Adding summary
     fos_scam_records["summary"] = ""
 
-    seprator_sting = "\n" + "\n" + "--------------------------------" + "\n" + "\n"
+    separator_string = "\n" + "\n" + "--------------------------------" + "\n" + "\n"
 
-    list_of_all_tweets = seprator_sting
+    list_of_all_tweets = separator_string
 
     list_of_strings = []
 
     for index, each_row in fos_scam_records.iterrows():
 
-        tweet_string, summary_text = getting_a_single_tweet_from_complint(each_row)
+        tweet_string, summary_text = getting_a_single_tweet_from_complaint(each_row)
 
-        list_of_all_tweets = list_of_all_tweets + tweet_string + seprator_sting
+        list_of_all_tweets = list_of_all_tweets + tweet_string + separator_string
 
         list_of_strings = list_of_strings + [tweet_string]
 
@@ -343,11 +343,11 @@ def saving_the_tweets(complete_list_of_decisions, url_link):
 
 def getting_URL_with_date_range(start_date, end_date, search_term="scam"):
 
-    # Seting up the URL strings
+    # Setting up the URL strings
     start_date_sting = start_date.strftime("%Y-%m-%d")
     end_date_sting = end_date.strftime("%Y-%m-%d")
 
-    websrcape_URL = (
+    webscrape_URL = (
         "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword="
         + search_term
         + "&DateFrom="
@@ -357,7 +357,7 @@ def getting_URL_with_date_range(start_date, end_date, search_term="scam"):
         + "&Sort=relevance"
     )
 
-    return websrcape_URL
+    return webscrape_URL
 
 
 def run():

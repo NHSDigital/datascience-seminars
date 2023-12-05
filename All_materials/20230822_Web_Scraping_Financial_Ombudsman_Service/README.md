@@ -1,7 +1,7 @@
-Web Scraping Complaints from the Financial Ombudsman Service
-=============================
+# Web Scraping Complaints from the Financial Ombudsman Service
 
-#### *Kenneth Quan*
+**Kenneth Quan**
+
 <kenneth.quan1@nhs.net>
 
 TODO: Add downgit link
@@ -17,12 +17,13 @@ TODO: Add downgit link
 > Debt Advice: [https://www.stepchange.org/](https://www.stepchange.org/) <br>
 > Do not use search engines. Go directly via the links.
 
-## Intoduction
-This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/).
+## Introduction
 
+This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/).
 The work is NOT endorsed by the Financial Ombudsman Service.
 
 ## How to use the code
+
 The main code is found in `create_output.py`. The script contains the following steps.
 
 ### Constructing the URL link
@@ -32,23 +33,27 @@ The construction of the URL link is made using the function:
 ```python
 url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['seach_term']) 
 ```
-The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.tmol` file.
+
+The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.toml` file.
 
 ### Web scraping
 
-The web scraping is perform using the function:
-```
+The web scraping is performed using the function:
+
+```python
 complete_list = fos_web_scrap.get_complete_decision_list(url_link_from_function)
 ```
+
 There are hardcoded parameters to extract the relevant html data from the webpage.
 
 ### Wrangling and Analysis
 
-The wrangling and analysis are perform using:
+The wrangling and analysis are performed using:
 
-```
+```python
 _ , _, summary_table = fos_web_scrap.list_of_summary(complete_list)
 ```
+
 The function takes all relevant data from meta data on the html and text from the PDF to a Pandas table.
 
 ### Output
@@ -57,18 +62,17 @@ The resulting output can be found in `output_table.md`.
 
 For brevity, the main PDF text has been removed before publishing.
 
-
 ## Example Output
+
 The following is example of a table outputted in by the `create_output.py` script. The columns mean the following:
 
-- Ref – Unique compliant reference 
+- Ref – Unique compliant reference
 - Date – Date of complaint
 - Bank – Financial Institutions which the complaint was made against
 - Scale of Lost – The scale of the largest of sum of money mentioned in the complaint
 - Outcome – If the complaint was upheld
 - CRM – Did the complaint mentioned CRM meaning [Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/)
 - Sample – A sampled of the complaint from the main body of text
-
 
 | | Ref | Date | Bank | Scale of Lost | Outcome | CRM | Sample |
 |---:|:------------|:--------------------|:---------------------|:----------------|:----------|:------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,4 +84,4 @@ The following is example of a table outputted in by the `create_output.py` scrip
 | 5 | DRN-3720076 | 2023-06-02 00:00:00 | Monzo Bank Ltd | 10^4 | Upheld | True | unsuccessful attempts withdraw money , company  website online social media page taken , realised  scammed . Mr M raised matter Monzo . Monzo signatory Lending Standards Board  Contingent Reimbursement Model ( CRM Code ) agreed adhere provisions . This means Monzo made commitment reimburse customers victims authorised push payment scams except limited circumstances . Monzo investigated Mr M  |
 | 6 | DRN-4164863 | 2023-06-01 00:00:00 | Monzo Bank Ltd | 10^3 | Upheld | True | mer made payment consequence actions fraudster , may sometimes fair reasonable bank reimburse customer even though authorised payment . Monzo  signatory Lending Standards Boards Contingent Reimbursement Model ( CRM code ) said committed applying principles set . This code requires firms reimburse customers victim authorised push payment scams , like one Ms C fell victim , limited number circumsta |
 | 7 | DRN-4162779 | 2023-06-02 00:00:00 | Barclays Bank UK PLC | 10^4 | Notupheld | False | cantly lower value I would expected trigger Barclays  fraud prevention systems . On 29 June 2021 Barclays conversation Mr J payment making . I listened call . The Barclays representative explained calling £22,500 payment Mr J attempting make . He checked Mr J making payment made type investment . Mr J confirmed making payment account Kraken made type investment . Mr J also confirmed may making si |
-| 8 | DRN-4158197 | 2023-06-02 00:00:00 | Lloyds Bank PLC | 10^6 | Notupheld | True | 7/21 Share payment £5,500 01/07/21 From family member £7,500 02/07/21 From family member £5,047 05/07/21 Branch deposit £25,000 06/07/21 Loan £4,992 08/07/21 Branch deposit £53,218.68 10/08/21  Tax payment  £5,000 Note  dates taken statement Various foreign transfer fees included.What Lloyds said Once Ms P brought scam attention made complaint , assessed situation based relative actions party . |
+| 8 | DRN-4158197 | 2023-06-02 00:00:00 | Lloyds Bank PLC | 10^6 | Notupheld | True | 7/21 Share payment £5,500 01/07/21 From family member £7,500 02/07/21 From family member £5,047 05/07/21 Branch deposit £25,000 06/07/21 Loan £4,992 08/07/21 Branch deposit £53,218.68 10/08/21  Tax payment  £5,000 Note  dates taken statement Various foreign transfer fees included.What Lloyds said Once Ms P brought scam attention made complaint , assessed situation based relative actions party.
