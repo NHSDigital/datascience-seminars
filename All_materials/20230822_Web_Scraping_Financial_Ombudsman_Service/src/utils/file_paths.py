@@ -2,6 +2,7 @@
 Purpose of the script: loads config
 """
 import logging
+
 import toml
 
 logger = logging.getLogger(__name__)
@@ -17,4 +18,3 @@ def get_config(toml_path = "config.toml") -> dict:
         config = get_config()
     """
     return toml.load(toml_path)
-    

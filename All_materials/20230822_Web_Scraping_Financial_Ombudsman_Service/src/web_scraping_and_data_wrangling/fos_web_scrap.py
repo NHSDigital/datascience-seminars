@@ -1,16 +1,17 @@
-import pandas as pd
-from nltk.corpus import stopwords
-import bs4
-import requests
-from io import BytesIO
-import PyPDF2
-from nltk.tokenize import word_tokenize
-from nltk.tokenize import RegexpTokenizer
+import datetime
 import re
 import string
-import datetime
+from io import BytesIO
+
+import bs4
 import gensim
-from nltk.stem import WordNetLemmatizer, SnowballStemmer
+import pandas as pd
+import PyPDF2
+import requests
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer, WordNetLemmatizer
+from nltk.tokenize import RegexpTokenizer, word_tokenize
+
 all_stopwords = stopwords.words('english')
 stemmer = SnowballStemmer("english")
 
@@ -332,4 +333,3 @@ def run():
 
     :return: number of search results
     """
-    

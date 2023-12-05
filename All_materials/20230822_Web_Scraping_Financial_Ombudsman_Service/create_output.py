@@ -1,6 +1,7 @@
-from src.web_scraping_and_data_wrangling import fos_web_scrap
-from src.utils.file_paths import get_config
 from datetime import datetime
+
+from src.utils.file_paths import get_config
+from src.web_scraping_and_data_wrangling import fos_web_scrap
 
 config = get_config("config.toml") 
 
