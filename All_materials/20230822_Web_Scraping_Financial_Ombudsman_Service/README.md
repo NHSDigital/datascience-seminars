@@ -69,7 +69,7 @@ The following is example of a table outputted in by the `create_output.py` scrip
 - Bank – Financial institutions against which the complaint was made
 - Scale of Lost – The scale of the largest of sum of money mentioned in the complaint
 - Outcome – If the complaint was upheld
-- CRM – Did the complaint mentioned CRM meaning [Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/)
+- CRM – Did the complaint mention CRM ([Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/))
 - Sample – A sampled of the complaint from the main body of text
 
 | | Ref | Date | Bank | Scale of Lost | Outcome | CRM | Sample |
