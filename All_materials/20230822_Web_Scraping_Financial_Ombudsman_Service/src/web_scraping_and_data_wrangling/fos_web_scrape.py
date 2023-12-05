@@ -15,15 +15,6 @@ from nltk.tokenize import RegexpTokenizer, word_tokenize
 all_stopwords = stopwords.words("english")
 stemmer = SnowballStemmer("english")
 
-# hi
-# Test URL for FOS
-# BASE_URL = "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&Business={banking_code}&DateFrom=2022-01-01&DateTo=2022-06-01&{upheld_code}&Sort=relevance"
-url_link = "https://www.financial-ombudsman.org.uk/decisions-case-studies/ombudsman-decisions/search?Keyword=scam&IndustrySectorID%5B1%5D=1&DateFrom=2023-01-01&DateTo=2023-06-11&IsUpheld%5B1%5D=1&IsUpheld%5B0%5D=0&Sort=relevance"
-
-
-# You can see that you can use the search within the parameters of the URL
-
-
 def get_info_as_soup(url_link: str):
     # Getting the request
 
@@ -359,10 +350,3 @@ def getting_URL_with_date_range(start_date, end_date, search_term="scam"):
 
     return webscrape_URL
 
-
-def run():
-    """
-    Main orchestration function
-
-    :return: number of search results
-    """

@@ -14,8 +14,5 @@ def get_config(toml_path="config.toml") -> dict:
     Returns:
         Dict: A dictionary containing details of the database, paths, etc. Should contain all the things that will change from one run to the next/
 
-    Example:
-        from shmi_improvement.utilities.helpers import get_config
-        config = get_config()
     """
     return toml.load(toml_path)
