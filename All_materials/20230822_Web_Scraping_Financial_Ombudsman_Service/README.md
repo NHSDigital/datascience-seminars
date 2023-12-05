@@ -58,7 +58,6 @@ The resulting output can be found in `output_table.md`. <br>
 <br>
 For brevity, the main PDF text has been removed before publishing.
 
-
 ## Example Output
 The following is example of a table outputted in by the `create_output.py` script. The columns mean the following: <br>
 - Ref – Unique compliant reference 
