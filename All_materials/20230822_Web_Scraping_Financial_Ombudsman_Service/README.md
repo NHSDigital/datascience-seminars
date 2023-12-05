@@ -24,6 +24,7 @@ This repo is designed as training material on the web scraping, data wrangling (
 The work is NOT endorsed by the Financial Ombudsman Service.
 
 ## How to use the code
+
 The main code is found in `create_output.py`. The script contains the following steps.
 
 ### Constructing the URL link
