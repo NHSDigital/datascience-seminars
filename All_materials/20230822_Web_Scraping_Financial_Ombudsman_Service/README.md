@@ -37,7 +37,7 @@ The inputs of the function are the date range when the complaints were made and 
 
 ### Web scraping
 
-The web scraping is perform using the function:
+The web scraping is performed using the function:
 ```
 complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
 ```
