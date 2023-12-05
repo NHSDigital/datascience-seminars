@@ -35,7 +35,7 @@ def get_info_as_soup(url_link: str):
     return soup
 
 
-def get_list_of_deision(soup):
+def get_list_of_decision(soup):
     # From the soup to get coorect info
 
     li_section = soup.find_all("li")
@@ -53,26 +53,26 @@ def get_list_of_deision(soup):
     return desison_list
 
 
-def wrangle_each_deision_list(desison_list):
+def wrangle_each_decision_list(desison_list):
 
-    list_of_machine_readable_deision = []
+    list_of_machine_readable_decision = []
 
-    for each_deison in desison_list:
+    for each_decision in desison_list:
 
         # Wrangle the list
-        each_deison = [re.sub(" +", " ", x) for x in each_deison if (x != "")]
+        each_decision = [re.sub(" +", " ", x) for x in each_decision if (x != "")]
 
         # Getting the info
-        ref_number = each_deison[0][19:]
-        date_of_desision = datetime.datetime.strptime(each_deison[1], "%d %b %Y")
-        bank = each_deison[2]
-        outcome = each_deison[5].replace(" ", "")
-        descrp = each_deison[8].split(" ", 2)[2][:190]
+        ref_number = each_decision[0][19:]
+        date_of_decision = datetime.datetime.strptime(each_decision[1], "%d %b %Y")
+        bank = each_decision[2]
+        outcome = each_decision[5].replace(" ", "")
+        descrp = each_decision[8].split(" ", 2)[2][:190]
         pdf_text = getting_pdf_text(ref_number)
 
-        dict_each_deision = {
+        dict_each_decision = {
             "ref": ref_number,
-            "date": date_of_desision,
+            "date": date_of_decision,
             "scale_of_lost": finding_scale_of_money(pdf_text),
             "bank": bank,
             "outcome": outcome,
@@ -81,11 +81,11 @@ def wrangle_each_deision_list(desison_list):
             "CRM": was_CRM_mentioned(pdf_text),
         }
 
-        list_of_machine_readable_deision = list_of_machine_readable_deision + [
-            dict_each_deision
+        list_of_machine_readable_decision = list_of_machine_readable_decision + [
+            dict_each_decision
         ]
 
-    return list_of_machine_readable_deision
+    return list_of_machine_readable_decision
 
 
 def getting_number_of_links_and_soup(soup, url_link):
@@ -120,26 +120,26 @@ def getting_number_of_links_and_soup(soup, url_link):
     return list_of_urls, number_of_pages
 
 
-def get_complete_desision_list(url_link):
+def get_complete_decision_list(url_link):
 
     # Getting all the 0th soup
     soup = get_info_as_soup(url_link)
 
     links_for_all_lists, _ = getting_number_of_links_and_soup(soup, url_link)
 
-    list_of_deisions = []
+    list_of_decisions = []
 
     for each_url in links_for_all_lists:
 
         each_soup = get_info_as_soup(each_url)
 
-        desison_list = get_list_of_deision(each_soup)
+        desison_list = get_list_of_decision(each_soup)
 
-        list_of_machine_readable_deision = wrangle_each_deision_list(desison_list)
+        list_of_machine_readable_decision = wrangle_each_decision_list(desison_list)
 
-        list_of_deisions = list_of_deisions + list_of_machine_readable_deision
+        list_of_decisions = list_of_decisions + list_of_machine_readable_decision
 
-    return list_of_deisions
+    return list_of_decisions
 
 
 def getting_pdf_text(ref_complaint):
@@ -317,14 +317,14 @@ def list_of_summary(list_of_complants):
     return list_of_all_tweets, pandas_of_tweets, fos_scam_records
 
 
-def saving_the_tweets(complete_list_of_deisions, url_link):
+def saving_the_tweets(complete_list_of_decisions, url_link):
 
     # Getting the save file name
     name_of_file = url_link.translate(str.maketrans("", "", string.punctuation))
     # Crop the start
     name_of_file = name_of_file[75:]
 
-    to_tweet, pandas_of_tweets = list_of_summary(complete_list_of_deisions)
+    to_tweet, pandas_of_tweets = list_of_summary(complete_list_of_decisions)
 
     # Need to remove some uni code characters
     to_tweet = to_tweet.replace("\uf0b7", "")

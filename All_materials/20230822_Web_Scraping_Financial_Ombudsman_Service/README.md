@@ -18,8 +18,8 @@ TODO: Add downgit link
 > Do not use search engines. Go directly via the links.
 
 ## Intoduction
-This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/). <br>
-<br>
+This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/).
+
 The work is NOT endorsed by the Financial Ombudsman Service.
 
 ## How to use the code
@@ -29,7 +29,7 @@ The main code is found in `create_output.py`. The script contains the following 
 
 The construction of the URL link is made using the function:
 
-```
+```python
 url_link_from_function = fos_web_scrap.getting_URL_with_date_range(start_date, end_date, config['web']['seach_term']) 
 ```
 The inputs of the function are the date range when the complaints were made and the search term use to find the relevant complaints. The parameters can be found in the `config.tmol` file.
@@ -38,7 +38,7 @@ The inputs of the function are the date range when the complaints were made and 
 
 The web scraping is perform using the function:
 ```
-complete_list = fos_web_scrap.get_complete_desision_list(url_link_from_function)
+complete_list = fos_web_scrap.get_complete_decision_list(url_link_from_function)
 ```
 There are hardcoded parameters to extract the relevant html data from the webpage.
 
@@ -53,13 +53,14 @@ The function takes all relevant data from meta data on the html and text from th
 
 ### Output
 
-The resulting output can be found in `output_table.md`. <br>
-<br>
+The resulting output can be found in `output_table.md`.
+
 For brevity, the main PDF text has been removed before publishing.
 
 
 ## Example Output
-The following is example of a table outputted in by the `create_output.py` script. The columns mean the following: <br>
+The following is example of a table outputted in by the `create_output.py` script. The columns mean the following:
+
 - Ref – Unique compliant reference 
 - Date – Date of complaint
 - Bank – Financial Institutions which the complaint was made against
