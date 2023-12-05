@@ -56,7 +56,7 @@ The function takes all relevant data from metadata in the html and text from the
 
 ### Output
 
-The resulting output can be found in `output_table.md`.
+The resulting output can be found in `table_of_complaints.md`.
 
 For brevity, the main PDF text has been removed before publishing.
 
