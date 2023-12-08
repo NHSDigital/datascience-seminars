@@ -359,6 +359,20 @@ def is_CRM_used(binary_take):
 
 
 def date_format_as_string_in_tweet(date_info):
+    """
+    To convert datetime into a string
+
+    Parameters
+    ----------
+    date_info : datetime
+        Datetime input.
+
+    Returns
+    -------
+    date_of_compl : str
+        Datetime output as a string.
+
+    """
 
     # getting the date
     date_of_compl = date_info.strftime("%m%d%y")
@@ -367,7 +381,23 @@ def date_format_as_string_in_tweet(date_info):
 
 
 def getting_a_single_tweet_from_complaint(single_series):
+    """
+    Convert a single complaint into a tweet
 
+    Parameters
+    ----------
+    single_series : dict
+        Dictionary of items in the complaint.
+
+    Returns
+    -------
+    string_construction : str
+        String as a tweet.
+    extented_verison : str
+        Extended version of the tweet.
+
+    """
+    
     # Need to construct the extract
     full_text_complaint = single_series["all_text"]
     text_without_stopwords = word_tokenize(full_text_complaint)
@@ -399,12 +429,32 @@ def getting_a_single_tweet_from_complaint(single_series):
 
     # Crop
     string_construction = string_construction[:279]
+    
+    extented_verison = text_without_stopwords[:400]
 
-    return string_construction, text_without_stopwords[:400]
+    return string_construction, extented_verison
 
 
 def list_of_summary(list_of_complaints):
+    """
+    Combines the PDF text and HTML metadata for each complaints
 
+    Parameters
+    ----------
+    list_of_complaints : list
+        List of complaints.
+
+    Returns
+    -------
+    list_of_all_tweets : list
+        Getting the information as a tweet.
+    pandas_of_tweets : Dataframe
+        Getting the information as pandas table.
+    fos_scam_records : list
+        Getting the information as a list.
+
+    """
+    
     # Convert to pandas
     fos_scam_records = pd.DataFrame.from_dict(list_of_complaints)
 
@@ -434,7 +484,22 @@ def list_of_summary(list_of_complaints):
 
 
 def saving_the_tweets(complete_list_of_decisions, url_link):
+    """
+    Saving the list of tweets as a csv 
 
+    Parameters
+    ----------
+    complete_list_of_decisions : list
+        List of decisions.
+    url_link : str
+        URL of the web scrape – forms part of the name.
+
+    Returns
+    -------
+    None.
+
+    """
+    
     # Getting the save file name
     name_of_file = url_link.translate(str.maketrans("", "", string.punctuation))
     # Crop the start
@@ -458,6 +523,24 @@ def saving_the_tweets(complete_list_of_decisions, url_link):
 
 
 def getting_URL_with_date_range(start_date, end_date, search_term="scam"):
+    """
+    Generating the URL
+
+    Parameters
+    ----------
+    start_date : str
+        Start date of the period of complaints.
+    end_date : str
+        End date of the period of complaints.
+    search_term : str, optional
+        Search term for the Financial Ombudsman Service. The default is "scam".
+
+    Returns
+    -------
+    webscrape_URL : str
+        URL link to web scrape.
+
+    """
 
     # Setting up the URL strings
     start_date_sting = start_date.strftime("%Y-%m-%d")
