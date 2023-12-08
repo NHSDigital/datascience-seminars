@@ -29,7 +29,7 @@ _, _, summary_table = fos_web_scrape.list_of_summary(complete_list)
 output_table = summary_table.copy()
 output_table.rename(columns=config["table"], inplace=True)
 output_table = output_table[list(config["table"].values())]
-mk_table = output_table.to_markdown().replace("\uf0b7", "")
+mk_table = output_table.to_markdown(index=False).replace("\uf0b7", "")
 
 # Save the file
 with open(config["file"]["name"], "w") as text_file:
