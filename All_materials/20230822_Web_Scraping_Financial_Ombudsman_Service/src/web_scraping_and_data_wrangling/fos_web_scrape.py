@@ -16,6 +16,18 @@ all_stopwords = stopwords.words("english")
 stemmer = SnowballStemmer("english")
 
 def get_info_as_soup(url_link: str):
+    """
+    Using the url_link to get html into a soup
+
+    Parameters
+    ----------
+    url_link : str
+
+    Returns
+    -------
+    soup : bs4.BeautifulSoup
+
+    """
     # Getting the request
 
     res = requests.get(url_link)
@@ -27,7 +39,20 @@ def get_info_as_soup(url_link: str):
 
 
 def get_list_of_decision(soup):
-    # From the soup to get correct info
+    """
+    Returns list of complaints and decisions from the webpage
+
+    Parameters
+    ----------
+    soup : bs4.BeautifulSoup
+        Soup from the URL link
+
+    Returns
+    -------
+    decision_list : list
+        List of decisions on the webpage
+
+    """
 
     li_section = soup.find_all("li")
 
@@ -45,6 +70,20 @@ def get_list_of_decision(soup):
 
 
 def wrangle_each_decision_list(decision_list):
+    """
+    Getting relevant information form the complaint
+
+    Parameters
+    ----------
+    decision_list : list
+        List of decision returned from website.
+
+    Returns
+    -------
+    list_of_machine_readable_decision : list(dict)
+        List of decision in a dict of relevant information.
+
+    """
 
     list_of_machine_readable_decision = []
 
@@ -81,23 +120,24 @@ def wrangle_each_decision_list(decision_list):
 
 def getting_number_of_links_and_soup(soup, url_link):
     """
-    Getting the list from soup
+    Getting the URL links for each pages of the search term
 
     Parameters
     ----------
-    soup 
-    
-    url
+    soup : bs4.BeautifulSoup
+        Soup from the first page.
+    url_link : str
+        URL of the first page.
 
     Returns
     -------
-    number_of_pages
-        Number of pages
-    list_of_urls
-        The list the URLs
+    list_of_urls : list(str)
+        URLs of all the pages that list the decisions.
+    number_of_pages : int
+        The number of pages that shows all the decisions.
 
     """
-
+    
     # Getting the number of pages
     out = soup.find_all("div", {"class": "search-results-holder"})[0]
     number_of_pages = int(out.text.split("\n")[-5].split()[-1])
@@ -112,6 +152,20 @@ def getting_number_of_links_and_soup(soup, url_link):
 
 
 def get_complete_decision_list(url_link):
+    """
+    Using the initial URL link, we generate all the sessions across multiple pages
+
+    Parameters
+    ----------
+    url_link : str
+        URL link for the first page.
+
+    Returns
+    -------
+    list_of_decisions : list
+        List of all the decisions in a machine readable format.
+
+    """
 
     # Getting all the 0th soup
     soup = get_info_as_soup(url_link)
@@ -134,6 +188,20 @@ def get_complete_decision_list(url_link):
 
 
 def getting_pdf_text(ref_complaint):
+    """
+    List of all the decisions in a machine readable format
+
+    Parameters
+    ----------
+    ref_complaint : str
+        Unique reference for each complaint.
+
+    Returns
+    -------
+    all_text : str
+        The entire text of the PDF.
+
+    """
 
     # Getting the pdf link
     url_pdf = (
@@ -157,6 +225,20 @@ def getting_pdf_text(ref_complaint):
 
 
 def getting_numbers_from_string(string_with_numbers):
+    """
+    Reading complaints and getting all the strings with numbers
+
+    Parameters
+    ----------
+    string_with_numbers : str
+        Text with numbers.
+
+    Returns
+    -------
+    numbers_only : list(str)
+        List of numbers as strings.
+
+    """
 
     numbers_only = [x for x in string_with_numbers if x.isdigit()]
     numbers_only = "".join(numbers_only)
@@ -165,7 +247,21 @@ def getting_numbers_from_string(string_with_numbers):
 
 
 def finding_scale_of_money(string_text):
+    """
+    Finding the magnitude of the largest transaction in the complaints 
 
+    Parameters
+    ----------
+    string_text : str
+        Body of the complaint.
+
+    Returns
+    -------
+    string_scale : str
+        The magnitude of the complaint as “10^n”.
+
+    """
+    
     # Need to separation the stings
     string_splint = string_text.split()
 
@@ -181,11 +277,27 @@ def finding_scale_of_money(string_text):
         return string_scale
 
     else:
-
-        return "10^?"
+        
+        string_scale = "10^?"
+        
+        return string_scale
 
 
 def was_CRM_mentioned(string_text):
+    """
+    Detecting if CRM was mentioned.
+
+    Parameters
+    ----------
+    string_text : str
+        The main body of the complaint.
+
+    Returns
+    -------
+    bool
+        Ture if complaint was mentioned or false if otherwise.
+
+    """
 
     tokenizer = RegexpTokenizer(r"\w+")
 
@@ -203,6 +315,20 @@ def was_CRM_mentioned(string_text):
 
 
 def finding_scale_of_lost_in_complaint(ref_complaint):
+    """
+    From using the reference of the complaint, find the largest magnitude of lost
+
+    Parameters
+    ----------
+    ref_complaint : str
+        The complaints unique ID.
+
+    Returns
+    -------
+    scale_of_lost : str
+        The magnitude of the highest transaction mentioned in the complaint.
+
+    """
 
     all_text = getting_pdf_text(ref_complaint)
 
@@ -212,25 +338,24 @@ def finding_scale_of_lost_in_complaint(ref_complaint):
 
 
 def is_CRM_used(binary_take):
+    """
+    To write if CRM was used in a tweet 
 
+    Parameters
+    ----------
+    binary_take : bool
+        Was CRM used in the complaint.
+
+    Returns
+    -------
+    str
+        String format for twitter post.
+
+    """
     if binary_take:
         return "YES"
     else:
         return "NO"
-
-
-def lemmatize_stemming(text):
-    return stemmer.stem(WordNetLemmatizer().lemmatize(text, pos="v"))
-
-
-# Tokenize and lemmatize
-def preprocess(text):
-    result = []
-    for token in gensim.utils.simple_preprocess(text):
-        if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
-            result.append(lemmatize_stemming(token))
-
-    return result
 
 
 def date_format_as_string_in_tweet(date_info):
