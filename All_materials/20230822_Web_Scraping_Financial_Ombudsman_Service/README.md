@@ -67,7 +67,7 @@ The following is example of a table outputted in by the `create_output.py` scrip
 - Ref – Unique compliant reference
 - Date – Date of complaint
 - Bank – Financial institutions against which the complaint was made
-- Scale of Lost – The scale of the largest of sum of money mentioned in the complaint
+- Scale of Lost – The order of magnitude of the largest of sum of money mentioned in the complaint. For example, if a complaint mentions transactions of £19, £123, £1999 the output shows the order of magnitude of the highest transaction – in this case it will be 10^3.
 - Outcome – If the complaint was upheld
 - CRM – Did the complaint mention CRM ([Contingent Reimbursement Model Code]( https://www.lendingstandardsboard.org.uk/crm-code/))
 - Sample – A sample of the complaint from the main body of text
