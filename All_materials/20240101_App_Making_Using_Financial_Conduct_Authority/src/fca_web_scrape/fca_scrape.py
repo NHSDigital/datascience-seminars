@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 import bs4
 import time
 import urllib.parse
+import re
 
 def get_soup_of_fca_search(search_term):
     
@@ -28,3 +29,13 @@ def get_soup_of_fca_search(search_term):
     soup = bs4.BeautifulSoup(html_data,'html.parser')
     
     return soup
+
+
+def get_reference_number(soup):
+    
+    element_list = soup.find_all('div', {'class':'text-medium slds-text-color_weak'})
+    
+    list_of_org_ref_number = [x.get_text() for x in element_list]
+    list_of_org_ref_number = [re.search(r'\d+', x).group() for x in  list_of_org_ref_number]
+    
+    return list_of_org_ref_number
