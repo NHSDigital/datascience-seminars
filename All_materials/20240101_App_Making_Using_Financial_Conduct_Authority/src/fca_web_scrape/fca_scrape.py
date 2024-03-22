@@ -99,3 +99,13 @@ def get_phone_number_from_fca_profile(soup):
     phone_number = element_list[0].get_text()
     
     return phone_number
+
+def get_website_from_fca_profile(soup):
+    
+    list_if_removed_extension = ['.fca.', '.gov.', '.bankofengland.']
+    
+    element_list = soup.find_all('a', {'name':'false'}, href=True)
+    
+    websites = [x['href'] for x in element_list if all(each_ext not in x['href'] for each_ext in list_if_removed_extension)]
+    
+    return websites

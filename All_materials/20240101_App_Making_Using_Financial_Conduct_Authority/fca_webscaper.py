@@ -17,25 +17,28 @@ soup_data_for_firm = fca_scrape.get_soup_without_cookie_notice(selected_link)
 
 #%% 
 
-def get_phone_number_from_fca_profile(soup):
+def get_website_from_fca_profile(soup):
     
-    element_list = soup.find_all('p', {'aria-hidden':'true'})
+    list_if_removed_extension = ['.fca.', '.gov.', '.bankofengland.']
     
-    #Getting the name
-    phone_number = element_list[0].get_text()
+    element_list = soup.find_all('a', {'name':'false'}, href=True)
     
-    return phone_number
+    websites = [x['href'] for x in element_list if all(each_ext not in x['href'] for each_ext in list_if_removed_extension)]
+    
+    return websites
 
 #%%
 text_analysis = soup_data_for_firm.prettify()
 
 #element_list = soup_data_for_firm.find_all('div',{'class':'slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-p-around_none slds-p-right_small'})
 
-element_list = soup_data_for_firm.find_all('p', {'aria-hidden':'true'})
+#element_list = soup_data_for_firm.find_all('p', {'aria-hidden':'true'})
 
-#element_list = soup_data_for_firm.find_all('a', {'name':'false'}, href=True)
+element_list = soup_data_for_firm.find_all('a', {'name':'false'}, href=True)
 
-tmp = [x.get_text() for x in element_list]
+list_if_removed_extension = ['.fca.', '.gov.', '.bankofengland.']
+
+tmp = [x['href'] for x in element_list if all(each_ext not in x['href'] for each_ext in list_if_removed_extension)]
 
 for each_item in tmp:
     print(each_item)
