@@ -82,3 +82,20 @@ def get_dict_of_ordering_firm_listings(soup):
     pandas_ref_table = pd.DataFrame(dicts_of_findings)
     
     return pandas_ref_table
+
+def get_name_from_fca_profile(soup):
+    
+    element_list = soup.find_all('h1', {'class':'text-display-2 text--bold'})
+    
+    #Getting the name
+    name_of_firm = element_list[0].get_text()
+    
+    return name_of_firm
+
+def get_phone_number_from_fca_profile(soup):
+    
+    element_list = soup.find_all('p', {'aria-hidden':'true'})
+    
+    phone_number = element_list[0].get_text()
+    
+    return phone_number
