@@ -14,7 +14,7 @@ ref_table = fca_scrape.get_dict_of_ordering_firm_listings(soup)
 
 first_firm_link = ref_table.iloc[0]['fca_ref']
 
-name, phone_number, website = fca_scrape.get_general_info_for_a_profile(soup)
+name, phone_number, website = fca_scrape.get_general_info_for_a_profile(first_firm_link)
     
 #%% 
 
