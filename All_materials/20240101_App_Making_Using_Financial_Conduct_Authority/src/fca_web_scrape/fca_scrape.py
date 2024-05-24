@@ -109,3 +109,13 @@ def get_website_from_fca_profile(soup):
     websites = [x['href'] for x in element_list if all(each_ext not in x['href'] for each_ext in list_if_removed_extension)]
     
     return websites
+
+def get_general_info_for_a_profile(url_link):
+    
+    soup = get_soup_without_cookie_notice(url_link)
+    
+    name = get_name_from_fca_profile(soup)
+    phone_number = get_name_from_fca_profile(soup)
+    website = get_website_from_fca_profile(soup)
+    
+    return name, phone_number, website
