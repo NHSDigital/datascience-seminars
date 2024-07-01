@@ -2,6 +2,7 @@
 
 https://github.com/nhs-pycom/coding-club/tree/main
 https://github.com/nhs-pycom/
+https://digital.nhs.uk/services/artificial-data 
 
 ## Housekeeping (5 mins)
 
@@ -11,7 +12,9 @@ https://github.com/nhs-pycom/
 
 ### How to run Python
 
-## How to print and access Pandas info (15mins)
+### Library
+
+## How to print and access Pandas info (15 mins)
 
 ### Print Function
 
@@ -27,9 +30,23 @@ https://github.com/nhs-pycom/
 
 ##### A entry for a given row and column
 
-### Pandas Grouping (15mins)
+## Data types in Pandas (15 mins)
 
+### Numbers
 
+### Strings
+
+### Dates?
+
+## Break + Stoptake + Retro (15 mins)
+
+## Groupings in Pandas (15mins)
+
+## Conditional and filterings (15 mins)
+
+## Stoptake + Take away
+
+## END
 
 ## Licence
 The documentation and the artificial data files are © Crown copyright and available under the terms of the [Open Government 3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) licence.
