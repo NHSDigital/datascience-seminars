@@ -1,8 +1,8 @@
 # README
 
 https://github.com/nhs-pycom/coding-club/tree/main
-https://github.com/nhs-pycom/
-https://digital.nhs.uk/services/artificial-data 
+https://github.com/nhs-pycom/\\
+https://digital.nhs.uk/services/artificial-data \\
 
 ## Housekeeping (5 mins)
 
