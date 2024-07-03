@@ -24,6 +24,14 @@ https://digital.nhs.uk/services/artificial-data
 
 #### Columns
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+list_of_cols = hes_data.columns
+
+print(list_of_cols)
+```
+
 ##### All the columns in the table
 
 ##### A single column
