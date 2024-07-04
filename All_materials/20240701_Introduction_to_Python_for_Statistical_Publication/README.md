@@ -39,12 +39,20 @@ list_of_cols = hes_data.columns
 print(list_of_cols)
 ```
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+selected_col = hes_data[['FYEAR', 'PARTYEAR', 'EPIKEY']]
+
+print(selected_col)
+```
+
 ##### A single column
 
 ```python
 hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
 
-selected_col = hes_data['AEKEY']
+selected_col = hes_data[['AEKEY']]
 
 print(selected_col)
 ```
@@ -98,7 +106,18 @@ print(date_col)
 ```
 ## Break + Stoptake + Retro (15 mins)
 
+
 ## Groupings in Pandas (15mins)
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+date_looking_col = hes_data['ADMIDATE']
+
+date_col = pd.to_datetime(date_looking_col, format="%Y/%m/%d")
+
+print(date_col)
+```
+
 
 ## Conditional and filterings (15 mins)
 
