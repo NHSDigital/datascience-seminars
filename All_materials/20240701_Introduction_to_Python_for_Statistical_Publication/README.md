@@ -108,17 +108,41 @@ print(date_col)
 
 
 ## Groupings in Pandas (15mins)
+
+### Aggrating over a single column
 ```python
 hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
 
-date_looking_col = hes_data['ADMIDATE']
+selecting_distances = hes_data[['DISDEST']]
 
-date_col = pd.to_datetime(date_looking_col, format="%Y/%m/%d")
+mean_distance = selecting_distances.mean()
 
-print(date_col)
+print(mean_distance)
 ```
 
+### Aggrating over a value in a column
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+selecting_each_patient = hes_data[['PSEUDO_HESID','DISDEST']]
+
+grouping_agg_distance = selecting_each_patient.groupby('PSEUDO_HESID').agg(['min','max','mean'])
+
+print(grouping_agg_distance)
+```
+
+### Aggrating over a value in a column
+
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+selecting_diag_codes_and_demogr_data = hes_data[['DIAG_4_01','ETHNOS','ELECDUR_CALC']]
+
+grouping_dia_codes = selecting_diag_codes_and_demogr_data.groupby(['DIAG_4_01','ETHNOS']).agg(['mean'])
+
+print(grouping_dia_codes)
+```
 ## Conditional and filterings (15 mins)
 
 ## Stoptake + Take away
