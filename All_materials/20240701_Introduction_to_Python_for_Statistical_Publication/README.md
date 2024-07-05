@@ -132,7 +132,7 @@ grouping_agg_distance = selecting_each_patient.groupby('PSEUDO_HESID').agg(['min
 print(grouping_agg_distance)
 ```
 
-### Aggrating over a value in a column
+### Aggrating over a value in multple column
 
 ```python
 hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
@@ -144,6 +144,12 @@ grouping_dia_codes = selecting_diag_codes_and_demogr_data.groupby(['DIAG_4_01','
 print(grouping_dia_codes)
 ```
 ## Conditional and filterings (15 mins)
+
+### Filtering the strings
+
+### Filtering numbers
+
+### Multipe conditions
 
 ## Stoptake + Take away
 
