@@ -149,6 +149,16 @@ print(grouping_dia_codes)
 
 ### Filtering numbers
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+binary_filter_age = hes_data['STARTAGE_CALC'] < 18
+
+filtered_age = hes_data[binary_filter_age]
+
+print(filtered_age)
+```
+
 ### Multipe conditions
 
 ## Stoptake + Take away
