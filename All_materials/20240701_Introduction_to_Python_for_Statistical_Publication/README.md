@@ -207,6 +207,20 @@ print(filtered_dates)
 
 ### Multipe conditions
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+binary_filter_letter_D = hes_data['DIAG_4_01'].str.contains('D')
+
+binary_filter_letter_E = hes_data['DIAG_4_01'].str.contains('E')
+
+indicator_either_D_or_E = binary_filter_letter_D | binary_filter_letter_E
+
+filtered_icd10 = hes_data[indicator_either_D_or_E]
+
+print(filtered_icd10)
+```
+
 ## Stoptake + Take away
 
 ## END
