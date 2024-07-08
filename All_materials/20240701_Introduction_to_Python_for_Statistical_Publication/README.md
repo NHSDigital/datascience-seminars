@@ -187,18 +187,30 @@ print(filtered_age)
 ### Filtering Dates
 
 #### Date range
+
 ```python
 hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
-
-date_looking_col = hes_data['ADMIDATE']
 
 #Create a date
 selected_date = datetime.datetime(2020, 6, 7)
 
 #Coverting column to a date
-hes_data['ADMIDATE'] = pd.to_datetime(date_looking_col, format="%Y/%m/%d")
+hes_data['ADMIDATE'] = pd.to_datetime(hes_data['ADMIDATE'], format="%Y/%m/%d")
 
 filter_dates_indicator = hes_data['ADMIDATE'] > selected_date
+
+filtered_dates = hes_data[filter_dates_indicator]
+
+print(filtered_dates)
+```
+
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+#Coverting column to a date
+hes_data['ADMIDATE'] = pd.to_datetime(hes_data['ADMIDATE'], format="%Y/%m/%d")
+
+filter_month_indicator = hes_data['ADMIDATE'].dt.month == 6
 
 filtered_dates = hes_data[filter_dates_indicator]
 
