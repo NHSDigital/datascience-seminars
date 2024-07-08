@@ -1,7 +1,7 @@
 # README
 
 > [!IMPORTANT]  
-> The data from this workshop is taken from the [Artificial data pilot]( Artificial data pilot - NHS England Digital)
+> The data from this workshop is taken from the [Artificial data pilot](https://digital.nhs.uk/services/artificial-data)
 
 ## Housekeeping (5 mins)
 For this workshop I expect:
