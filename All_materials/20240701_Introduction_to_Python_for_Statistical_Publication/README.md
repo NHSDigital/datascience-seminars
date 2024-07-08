@@ -19,6 +19,11 @@ https://digital.nhs.uk/services/artificial-data
 
 ### Library
 
+```python
+import pandas as pd
+import datetime
+```
+
 ## How to print and access Pandas info (15 mins)
 
 ### Print Function
@@ -147,6 +152,26 @@ print(grouping_dia_codes)
 
 ### Filtering the strings
 
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+binary_filter_letter = hes_data['DIAG_4_01'] == 'D610'
+
+filtered_icd10 = hes_data[binary_filter_letter]
+
+print(filtered_icd10)
+```
+
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+binary_filter_letter = hes_data['DIAG_4_01'].str.contains('D')
+
+filtered_icd10 = hes_data[binary_filter_letter]
+
+print(filtered_icd10)
+```
+
 ### Filtering numbers
 
 ```python
@@ -157,6 +182,27 @@ binary_filter_age = hes_data['STARTAGE_CALC'] < 18
 filtered_age = hes_data[binary_filter_age]
 
 print(filtered_age)
+```
+
+### Filtering Dates
+
+#### Date range
+```python
+hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
+
+date_looking_col = hes_data['ADMIDATE']
+
+#Create a date
+selected_date = datetime.datetime(2020, 6, 7)
+
+#Coverting column to a date
+hes_data['ADMIDATE'] = pd.to_datetime(date_looking_col, format="%Y/%m/%d")
+
+filter_dates_indicator = hes_data['ADMIDATE'] > selected_date
+
+filtered_dates = hes_data[filter_dates_indicator]
+
+print(filtered_dates)
 ```
 
 ### Multipe conditions
