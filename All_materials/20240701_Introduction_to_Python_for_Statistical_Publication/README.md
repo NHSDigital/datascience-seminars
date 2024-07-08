@@ -136,7 +136,7 @@ print(string_col + 'test')
 
 print(string_col * 2)
 ```
-### Dates?
+### Dates
 ```python
 hes_data = pd.read_csv('artificial_hes_apc_2021.csv')
 
@@ -148,6 +148,7 @@ print(date_col)
 ```
 ## Break + Stoptake + Retro (15 mins)
 
+[Having a stand up](https://www.atlassian.com/team-playbook/plays/standups)
 
 ## Groupings in Pandas (15mins)
 
@@ -271,6 +272,7 @@ print(filtered_icd10)
 ```
 
 ## Stoptake + Take away
+[Having a retro](https://www.atlassian.com/team-playbook/plays/retrospective)
 
 ## END
 
