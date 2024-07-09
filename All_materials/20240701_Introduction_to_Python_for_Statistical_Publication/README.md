@@ -15,26 +15,38 @@ For this workshop I expect:
 ```python
 a = 1
 b = a
+print(a)
+print(b)
 ```
 
 ```python
 a = 1
 b = 1
 c = a + b
+print(a)
+print(b)
+print(c)
 ```
 
 ```python
 a = 1
 b = a + 2
+print(a)
+print(b)
 b = b*4
 c = b + 4
+print(c)
 ```
 
 ```python
 a = 1
 b = 2
+print(b)
 b = a + b*3
+print(b)
 c = b + 4
+print(a)
+print(c)
 ```
 
 ### How to run Python
@@ -115,6 +127,25 @@ selected_entry = hes_data.iloc[3]['ADMIDATE']
 
 print(selected_entry)
 ```
+
+### Exercise
+
+In python, you can genrate a loop for example:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+```
+[!CAUTION]
+The spaces and colon are important
+
+**Exercise** Generate a loop to print each of the column name
+**Exercise** Generate a loop to print each entry in `NER_GP_PRACTICE`{:.python}
+**Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
+
+
+
 ## Data types in Pandas (15 mins)
 
 ### Numbers
@@ -125,6 +156,7 @@ number_col = hes_data['DISDEST']
 
 print(number_col)
 ```
+
 
 ### Strings
 ```python
