@@ -141,7 +141,12 @@ for x in fruits:
 The spaces and colon are important
 
 **Exercise** Generate a loop to print each of the column name
+
 **Exercise** Generate a loop to print each entry in `NER_GP_PRACTICE`{:.python}
+```python
+"NER_GP_PRACTICE"
+```
+
 **Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
 
 
