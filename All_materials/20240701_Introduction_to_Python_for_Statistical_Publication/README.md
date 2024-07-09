@@ -137,14 +137,14 @@ fruits = ["apple", "banana", "cherry"]
 for x in fruits:
   print(x)
 ```
-[!CAUTION]
-The spaces and colon are important
+>[!CAUTION]
+>The spaces and colon are important
 
 **Exercise** Generate a loop to print each of the column name
 
-**Exercise** Generate a loop to print each entry in `NER_GP_PRACTICE`{:.python}
+**Exercise** Generate a loop to print each entry in
 ```python
-"NER_GP_PRACTICE"
+'NER_GP_PRACTICE'
 ```
 
 **Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
