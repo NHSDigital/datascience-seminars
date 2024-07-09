@@ -41,6 +41,8 @@ print(c)
 
 ### How to run Python
 
+[Using Google Colab](https://colab.research.google.com/)
+
 ### Library
 
 > [!IMPORTANT]  
