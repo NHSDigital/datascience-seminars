@@ -59,6 +59,7 @@ print(c)
 ```python
 import pandas as pd
 import datetime
+import seaborn as sns
 ```
 
 ## How to print and access Pandas info (15 mins)
@@ -260,6 +261,15 @@ print(grouping_dia_codes)
 
 ### Exercise
 
+In python, you can plot a scatter graph using:
+
+```python
+tips = sns.load_dataset("tips") #Loads sample data
+sns.scatterplot(data=tips, x="total_bill", y="tip")
+```
+
+**Exercise** For each vaule in ``PSEUDO_HESID`` compute the aggregation of the mean ``STARTAGE`` and maximum ``PROVDIST``. Then plot a scatter graph between mean ``STARTAGE`` on the x axis and maximum ``PROVDIST``
+
 **Exercise** Consider the column:
 ```python
 'ETHNOS'.
@@ -268,7 +278,7 @@ Create a [series from the Pandas Dataframe]( https://www.geeksforgeeks.org/selec
 ```python
 value_counts()
 ```
-
+Then plot a bar chart using functions in [seaborn](https://seaborn.pydata.org/generated/seaborn.barplot.html)
 
 ## Conditional and filterings (15 mins)
 
