@@ -53,6 +53,9 @@ print(c)
 
 ### Library
 
+> [!IMPORTANT]  
+> I’m going to assume this has been run before each calculation 
+
 ```python
 import pandas as pd
 import datetime
@@ -130,7 +133,7 @@ print(selected_entry)
 
 ### Exercise
 
-In python, you can genrate a loop for example:
+In python, you can generate a loop for example:
 
 ```python
 fruits = ["apple", "banana", "cherry"]
@@ -148,8 +151,6 @@ for x in fruits:
 ```
 
 **Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
-
-
 
 ## Data types in Pandas (15 mins)
 
@@ -183,6 +184,34 @@ date_col = pd.to_datetime(date_looking_col, format="%Y/%m/%d")
 
 print(date_col)
 ```
+
+### Exercise
+
+In python, you can generate an if statement for example:
+
+```python
+a = 33
+b = 200
+if b > a:
+  print("b is greater than a")
+```
+>[!CAUTION]
+>The spaces and colon are important
+
+**Exercise** Generate a loop to print each value in the column:
+```python
+'DIAG_4_01'
+```
+where the [first letter is](https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python) ``A``
+
+
+**Exercise** Generate a loop to print each entry in
+```python
+'NER_GP_PRACTICE'
+```
+
+**Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
+
 ## Break + Stoptake + Retro (15 mins)
 
 [Having a stand up](https://www.atlassian.com/team-playbook/plays/standups)
