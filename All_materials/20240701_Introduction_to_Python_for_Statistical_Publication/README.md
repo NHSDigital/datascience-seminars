@@ -200,17 +200,22 @@ if b > a:
 
 **Exercise** Generate a loop to print each value in the column:
 ```python
+'DIAG_COUNT'
+```
+is fewer than 3
+
+**Exercise** Generate a loop to print each value in the column:
+```python
 'DIAG_4_01'
 ```
 where the [first letter is](https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python) ``A``
 
 
-**Exercise** Generate a loop to print each entry in
+**Exercise** Generate a loop to print each value in the column:
 ```python
-'NER_GP_PRACTICE'
+'ADMIDATE'
 ```
-
-**Exercise** Generate a loop to print each of the column [data type](https://stackoverflow.com/questions/40353079/pandas-how-to-check-dtype-for-all-columns-in-a-dataframe)
+where the [date is in on a Friday]( https://pandas.pydata.org/docs/user_guide/timeseries.html)
 
 ## Break + Stoptake + Retro (15 mins)
 
@@ -252,6 +257,19 @@ grouping_dia_codes = selecting_diag_codes_and_demogr_data.groupby(['DIAG_4_01','
 
 print(grouping_dia_codes)
 ```
+
+### Exercise
+
+**Exercise** Consider the column:
+```python
+'ETHNOS'.
+```
+Create a [series from the Pandas Dataframe]( https://www.geeksforgeeks.org/select-a-single-column-of-data-as-a-series-in-pandas/) and [find the frequency counts using the function]( https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html):
+```python
+value_counts()
+```
+
+
 ## Conditional and filterings (15 mins)
 
 ### Filtering the strings
