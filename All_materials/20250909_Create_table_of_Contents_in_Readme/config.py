@@ -3,4 +3,6 @@ config = {
     'date_column': 'date',
     'title_column': 'title',
     'link_column': 'link',
+    'readme_path': 'README.md',
+    'anchor_in_readme': '[place_table_here]: #'
 }

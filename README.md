@@ -35,3 +35,6 @@ For more information contact datascience@nhs.net.
 ## Acknowledgements
 
 We have borrowed a lot from other [Coffee and Coding](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/coffee-and-coding/) sessions organised across the public sector. See [this full list](https://docs.google.com/spreadsheets/d/13HstI9VZViUr3jxTQPMMK-gctkVeyig-7HDhN4fU1_E/edit#gid=0) for details.
+
+## Table of Contents
+[place_table_here]: #

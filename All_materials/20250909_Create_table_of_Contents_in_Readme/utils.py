@@ -36,13 +36,6 @@ def create_table_from_list_of_folder(folder, base_path):
 
     return df
 
-# def create_markdown_link(table_name,config):
-
-#     #Making a new row
-#     table_name[config['link_column']] = table_name[config['title_column']].apply(lambda x: f"[{x}]({x})")
-
-#     return table_name
-
 if __name__ == "__main__":
 
     #Table creation
@@ -53,4 +46,15 @@ if __name__ == "__main__":
     #Getting the table
     table_name = create_table_from_list_of_folder(folders,config['base_path'])
 
-    
+    #Editing the readme
+    readme_file_path = config['readme_path']
+    with open(readme_file_path,"r") as f:
+        readme_string = f.read()
+
+    readme_selected_text = readme_string.split(config['anchor_in_readme'], 1)[0] + config['anchor_in_readme']
+
+    table_to_markdown = table_name[[config['date_column'], config['link_column']]].to_markdown(index=False)
+    output_string = readme_selected_text + "\n\n" + table_to_markdown
+
+    # with open(config['readme_path'], "w") as f:
+    #     f.write(output_string)
