@@ -5,14 +5,21 @@ from config import (dia_plots,
                     nhs_palette, 
                     user_time_plots, 
                     monthly_interval_plot, 
-                    bland_altman_plt
+                    bland_altman_plt,
+                    pre_processing
 )
 import utils 
+
+
+"""
+Adding FAKE DATA 
+"""
+utils.create_marker_on_csv(pre_processing)
 
 """
 Ploting measures
 """
-# Loading 
+# Loading the data
 ADHD_dia_data = pd.read_csv(dia_plots['file_path'])
 
 # Spliting the data
