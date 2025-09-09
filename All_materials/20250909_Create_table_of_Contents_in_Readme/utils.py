@@ -6,11 +6,11 @@ def list_folders(base_path):
     return [name for name in os.listdir(base_path)
             if os.path.isdir(os.path.join(base_path, name))]
 
-def remove_first_folder_in_path(base_path):
+def remove_nth_folder_in_path(base_path,n_th= 2):
     # Remove the first folder in the base_path
     parts = base_path.strip(os.sep).split(os.sep)
-    if len(parts) > 1:
-        new_path = os.sep + os.path.join(*parts[1:]) + os.sep
+    if len(parts) > n_th:
+        new_path = os.sep + os.path.join(*parts[n_th:]) + os.sep
     else:
         new_path = base_path
     return new_path
@@ -21,7 +21,7 @@ def create_table_from_list_of_folder(folders, base_path):
     data = []
 
     #Need to remove the first folder 
-    base_path = remove_first_folder_in_path(base_path)
+    base_path = remove_nth_folder_in_path(base_path)
 
     for folder in folders:
         parts = folder.split('_', 1)
