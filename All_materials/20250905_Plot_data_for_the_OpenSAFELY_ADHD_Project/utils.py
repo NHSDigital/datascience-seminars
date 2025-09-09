@@ -455,6 +455,16 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     plt.subplots_adjust(hspace=0.4)
     return fig, axes
 
+def _import_mpl():
+    """This function is not needed outside this utils module."""
+    try:
+        import matplotlib.pyplot as plt
+    except:
+        raise ImportError("Matplotlib is not found.")
+
+    return plt
+
+
 def create_mpl_ax(ax=None):
     """Helper function for when a single plot axis is needed.
 
