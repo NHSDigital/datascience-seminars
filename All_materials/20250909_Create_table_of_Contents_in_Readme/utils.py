@@ -6,7 +6,7 @@ def list_folders(base_path):
     return [name for name in os.listdir(base_path)
             if os.path.isdir(os.path.join(base_path, name))]
 
-def create_table_from_list_of_folder(folder, base_path):
+def create_table_from_list_of_folder(folders, base_path):
     # Assuming folder names are in the format 'YYYYMMDD_Title'
     data = []
     for folder in folders:
@@ -36,25 +36,17 @@ def create_table_from_list_of_folder(folder, base_path):
 
     return df
 
-if __name__ == "__main__":
+def create_readme_with_updated_table(df,config):
 
-    #Table creation
-    base_path = config['base_path']
-    folders = list_folders(base_path)
-    print(folders)
-
-    #Getting the table
-    table_name = create_table_from_list_of_folder(folders,config['base_path'])
-
-    #Editing the readme
     readme_file_path = config['readme_path']
     with open(readme_file_path,"r") as f:
         readme_string = f.read()
 
     readme_selected_text = readme_string.split(config['anchor_in_readme'], 1)[0] + config['anchor_in_readme']
 
-    table_to_markdown = table_name[[config['date_column'], config['link_column']]].to_markdown(index=False)
+    table_to_markdown = df[[config['date_column'], config['link_column']]].to_markdown(index=False)
     output_string = readme_selected_text + "\n\n" + table_to_markdown
 
-    # with open(config['readme_path'], "w") as f:
-    #     f.write(output_string)
+    return output_string
+
+

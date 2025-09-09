@@ -1,8 +1,8 @@
 config = {
     "base_path": "/workspaces/datascience-seminars/All_materials",
-    'date_column': 'date',
+    'date_column': 'Date',
     'title_column': 'title',
-    'link_column': 'link',
+    'link_column': 'Link',
     'readme_path': 'README.md',
     'anchor_in_readme': '[place_table_here]: #'
 }

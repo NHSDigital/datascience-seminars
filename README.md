@@ -38,3 +38,13 @@ We have borrowed a lot from other [Coffee and Coding](https://analysisfunction.c
 
 ## Table of Contents
 [place_table_here]: #
+
+| Date       | Link                                                                                                                                                                                                                                                                      |
+|:-----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2023-08-22 | [Web Scraping Financial Ombudsman Service]( /workspaces/datascience-seminars/All_materials/20230822_Web_Scraping_Financial_Ombudsman_Service)                                                                                                                             |
+| 2024-01-01 | [App Making Using Financial Conduct Authority]( /workspaces/datascience-seminars/All_materials/20240101_App_Making_Using_Financial_Conduct_Authority)                                                                                                                     |
+| 2024-07-01 | [Introduction to Python for Statistical Publication]( /workspaces/datascience-seminars/All_materials/20240701_Introduction_to_Python_for_Statistical_Publication)                                                                                                         |
+| 2025-09-05 | [Plot data for the OpenSAFELY ADHD Project]( /workspaces/datascience-seminars/All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project)                                                                                                                           |
+| 2025-09-05 | [Displaying SNOMED usage for ADHD Remission Code]( /workspaces/datascience-seminars/All_materials/20250905_Displaying_SNOMED_usage_for_ADHD_Remission_Code)                                                                                                               |
+| 2025-09-05 | [Calculating ADHD prevalence rate from EMIS and Cegedim records using open source data from NHS England]( /workspaces/datascience-seminars/All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England) |
+| 2025-09-09 | [Create table of Contents in Readme]( /workspaces/datascience-seminars/All_materials/20250909_Create_table_of_Contents_in_Readme)                                                                                                                                         |
