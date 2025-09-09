@@ -2,11 +2,44 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import os
 
 import matplotlib.ticker as mtick
 import matplotlib.transforms as transforms
 
 from config import nhs_palette
+
+def create_marker_on_csv(pre_processing):
+    """
+    Adds a marker column with a specified value to all CSV files in a given directory and its subdirectories.
+
+    The marker column is inserted as the first column in each CSV file, and the original files are overwritten.
+
+    Args:
+        pre_processing (dict): A dictionary containing:
+            - 'file_path' (str): Path to the directory containing CSV files.
+            - 'marker' (str): The name and value to use for the marker column.
+
+    Returns:
+        None
+    """
+    source_dir = pre_processing['file_path']
+
+    csv_files = []
+    for root, dirs, files in os.walk(source_dir):
+        for file in files:
+            if file.endswith(".csv"):
+                csv_files.append(os.path.join(root, file))
+
+    #Adding FAKE DATA in a new column
+    for file in csv_files:
+        df = pd.read_csv(file)
+        df[pre_processing['marker']] = pre_processing['marker']
+        #Place the FAKE DATA column at the start
+        col = df.pop(pre_processing['marker']) 
+        df.insert(0, pre_processing['marker'], col)
+        #Overwrite the original file
+        df.to_csv(file, index=False)
 
 def single_year_table(table):
     """
