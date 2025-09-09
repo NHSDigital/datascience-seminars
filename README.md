@@ -6,9 +6,9 @@ A repo to hold resources and code associated with the (formerly NHS Digital) NHS
 
 Data Science Seminars provide a regular opportunity for those in the NHS who are interested in data science, to share code, skills and knowledge, provide advice and guidance to each other and generally network and get to know each other.
 
-## When and where
+<!-- ## When and where
 
-Our seminars take place on an ad hoc basis, usually monthly. Details of the specific seminars are provided in event invites sent out byt the datascience@nhs.net mailbox. Please note that due to the merging of NHS Digital, NHS England and Health Education England, these events might change in frequency, content and audience.
+Our seminars take place on an ad hoc basis, usually monthly. Details of the specific seminars are provided in event invites sent out byt the datascience@nhs.net mailbox. Please note that due to the merging of NHS Digital, NHS England and Health Education England, these events might change in frequency, content and audience. -->
 
 ## Terms
 
