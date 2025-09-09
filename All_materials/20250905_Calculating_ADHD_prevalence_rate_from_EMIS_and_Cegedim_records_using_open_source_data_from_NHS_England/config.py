@@ -1,14 +1,14 @@
 config = {
     'saved_path':'emis_measure',
-    'readme_path':'docs/emis_calculation/README.md',
+    'readme_path':'All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England/README.md',
     'anchor_in_readme': "[place_table_here]: #",
     'url_2324':"https://files.digital.nhs.uk/FC/187D35/health_care_ld_sicbl_2023-24.csv",
     'url_2223':"https://files.digital.nhs.uk/43/BD15AC/health_care_ld_sicbl_2022-23.csv",
     'url_1722':"https://files.digital.nhs.uk/BC/016738/health_care_ld_sicbl_data_1718_2122.zip",
     'url_1621':"https://files.digital.nhs.uk/49/70A43E/health_care_ld_ccg_data_1617_2021.zip",
     'main_link': "https://digital.nhs.uk/data-and-information/publications/statistical/health-and-care-of-people-with-learning-disabilities",
-    'file_path_to_save': "docs/emis_calculation/source_files/",
-    'file_path_to_emis_measure': "docs/emis_calculation/emis_measure.csv",
+    'file_path_to_save': "All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England/source_files/",
+    'file_path_to_emis_measure': "All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England/emis_measure.csv",
     'list_of_csv':{
         '23_24':'health_care_ld_sicbl_2023-24.csv',
         '22_23':'health_care_ld_sicbl_2022-23.csv',
