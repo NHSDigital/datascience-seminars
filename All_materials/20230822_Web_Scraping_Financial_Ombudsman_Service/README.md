@@ -1,9 +1,5 @@
 # Web Scraping Complaints from the Financial Ombudsman Service
 
-**Kenneth Quan**
-
-TODO: Add downgit link
-
 > [!WARNING]  
 > This repository will contain detailed discussions of victims of bank fraud.
 >
@@ -18,7 +14,10 @@ TODO: Add downgit link
 ## Introduction
 
 This repo is designed as training material on the web scraping, data wrangling (also known as [munging](https://en.wikipedia.org/wiki/Data_wrangling)) and text analysis of open score complaints data from the [Financial Ombudsman Service]( https://www.financial-ombudsman.org.uk/).
+
 The work is NOT endorsed by the Financial Ombudsman Service.
+
+Video Explanation [here](https://youtu.be/TdfkSNIIGps?si=PZq8Q_T486UMjsA-&t=2169)
 
 ## How to use the code
 
