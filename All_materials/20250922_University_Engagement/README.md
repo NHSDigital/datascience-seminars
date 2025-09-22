@@ -1,7 +1,7 @@
 > [!NOTE]  
 > This piece of work was created during my [firebreak week](https://insidegovuk.blog.gov.uk/2018/05/03/firebreaks-on-gov-uk/) therefore development is ad-hoc
 
-# List of Universities for Outreach 
+# Universities Outreach 
 
 ## Aim
 Having a comprehensive list of UK universities so we may be contact for opportunities for example graduate schemes and internships that support the [Data Science Team]( https://nhsengland.github.io/datascience/)
