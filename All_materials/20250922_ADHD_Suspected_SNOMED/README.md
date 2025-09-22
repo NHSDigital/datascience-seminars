@@ -19,3 +19,10 @@ As highlighted on the screenshot below, using the mouse cursor, click on Detail 
 ![Screenshot listing details of Attention deficit hyperactivity disorder suspected (situation)](/All_materials/20250922_ADHD_Suspected_SNOMED/Slide_2.png)
 
 ### Step 3: Reading the date of the date of the SNOMED code
+
+When the “i icon” is clicked, the date is listed under “Effective Time” as YYYYMMDD format (highlighted in yellow in the screenshot below).
+
+![Screenshot listing starting date of Attention deficit hyperactivity disorder suspected (situation)](/All_materials/20250922_ADHD_Suspected_SNOMED/Slide_3.png)
+
+# Conculsion
+As shown in the screenshot, the use of the SNOMED code for Attention deficit hyperactivity disorder suspected started in 2023. Therefore, it is not possible to compare the prevalence pre Covid (before 2020) – under the [Covid direction]( https://digital.nhs.uk/about-nhs-digital/corporate-information-and-documents/directions-and-data-provision-notices/data-provision-notices-dpns/opensafely-covid-19-service-data-provision-notice ), querying this SNOMED code is not permitted.
