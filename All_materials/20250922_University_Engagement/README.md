@@ -12,7 +12,7 @@ Work is supported by two directions:
 2. In [NHS England’s equality, diversity, and inclusion improvement plan](https://www.england.nhs.uk/long-read/nhs-equality-diversity-and-inclusion-improvement-plan/), High impact action 2 aims to support fair and inclusive recruitment processes. By outreaching universities regardless of research capabilities we hope to target under-representation and lack of diversity within the profession.
 
 ### Resources
-Initial exercise will hopefully take 2 days where each day is equivalent to 7.5 hours per day. In terms of cost, work is carried out by a Band 7 analyst [rates for analysts can found here]( https://www.nhsemployers.org/articles/pay-scales-202526).
+Initial exercise will hopefully take 2 days where each day is equivalent to 7.5 hours per day. In terms of cost, work is carried out by a Band 7 analyst  [rates for analysts can found here]( https://www.nhsemployers.org/articles/pay-scales-202526).
 
 # Method
 
