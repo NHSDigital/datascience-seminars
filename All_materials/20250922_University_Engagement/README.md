@@ -24,7 +24,7 @@ The method of contacting each university is as follows:
 1. Using a search engine to find the computer science department of the university
     - The search is stopped if the university does not have a computer science department or equivalent.
 2. Locate the head of department or staff responsible for careers
-    - If university staff is not contactable via email, we will search if the univerties is involved in any relevant [Centres for Doctoral Training](https://www.ukri.org/what-we-do/developing-people-and-skills/nerc/nerc-studentships/directed-training/centres-for-doctoral-training-cdt/)
+    - If university staff is not contactable via email, we will search if the university is involved in any relevant [Centres for Doctoral Training](https://www.ukri.org/what-we-do/developing-people-and-skills/nerc/nerc-studentships/directed-training/centres-for-doctoral-training-cdt/)
 3. Send email inviting for opportunities in the Data Science Team
 
 
