@@ -17,7 +17,7 @@ Initial exercise will hopefully take 2 days where each day is equivalent to 7.5 
 # Method
 
 ### Constructing List
-Universities are a devolved matter there for we are required to look individual nations and therefore there is not universal list. Due to time constraints – we will be using the list from [Wikipedia]( https://en.wikipedia.org/wiki/List_of_universities_in_the_United_Kingdom)
+Universities are a devolved matter - we are required to look individual nations. There is no universal list. Due to time constraints – we will be using the list from [Wikipedia]( https://en.wikipedia.org/wiki/List_of_universities_in_the_United_Kingdom)
 
 ### Contacting University
 The method of contacting each university is as follows:
