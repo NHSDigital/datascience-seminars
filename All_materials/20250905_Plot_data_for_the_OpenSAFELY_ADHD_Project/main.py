@@ -74,3 +74,10 @@ fig, axes = utils.plot_time_from_diagnosis_to_medication(time_between_dia_and_me
 axes = utils.watermark_plot(axes,user_time_plots['watermark'])
 
 fig.savefig(user_time_plots['file_name'], format="jpeg", dpi=300)
+
+"""
+Single cut of time between diagonsis to medication
+"""
+
+time_between_dia_and_med = pd.read_csv(user_time_plots['file_path'])
+

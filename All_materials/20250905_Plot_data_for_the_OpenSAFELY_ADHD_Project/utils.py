@@ -714,3 +714,51 @@ def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scalin
 
     plt.tight_layout()
     return f, ax
+
+def single_cut_of_data(table, 
+                       filter_dict = {
+                           'sex':'ALL', 
+                           'age_band':'10 to 17'
+                           },
+                        nhs_palette = nhs_palette
+                       ):
+    
+    #Do some filter
+    for each_column in filter_dict:
+        table = table[
+            table[each_column] == filter_dict[each_column]
+            ]
+        
+    #Need to covert the cols
+    table['year'] = table['year_of_medication'].astype(str).str[:4]
+
+    fig, axes = plt.subplots(1, figsize = (5,5))  # Changed to 2 rows, 1 column
+
+    sns.lineplot(
+        x="year",
+        y="median",
+        hue="age_band",
+        data=table,
+        ax=axes,
+        palette=nhs_palette,
+    )
+    axes.set_ylabel("Median Time Weeks")
+    axes.set_xlabel("Year")
+    axes.set_title("Male - Time between Diagnosis to Medication")
+
+    ax_tmp = axes.twinx()
+    sns.barplot(
+        x="year", 
+        y="size", 
+        hue="age_band", 
+        data=table, 
+        palette=nhs_palette, 
+        alpha=0.3, 
+        dodge=True,
+        ax=ax_tmp
+    )
+
+    ax_tmp.set_ylabel("Count of Patients")
+
+    plt.tight_layout()
+    plt.show()
