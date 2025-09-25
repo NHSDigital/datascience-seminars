@@ -11,6 +11,7 @@ user_time_plots = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_5_time_from_diagnosis_to_treatment.csv',
     'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_5_time_from_diagnosis_to_treatment.jpeg',
     'watermark':'TEST DATA - NOT REAL',
+    'cut_file_name': 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.jpeg',
 }
 
 monthly_interval_plot = {
@@ -44,5 +45,4 @@ dia_plots = {
     'bottom_right':{
         'title':'ADHD Diagnosis Prevalence and Counts by Age Band (65 and over)',
     },
-    'cut_file_name': 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.jpeg',
 }

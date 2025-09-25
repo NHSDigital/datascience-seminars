@@ -83,7 +83,7 @@ time_between_dia_and_med = pd.read_csv(user_time_plots['file_path'])
 
 fig, axes = utils.single_cut_of_data(time_between_dia_and_med)
 
-axes = utils.watermark_plot(axes,user_time_plots['watermark'])
+axes = utils.watermark_plot(axes,monthly_interval_plot['watermark'])
 
 fig.savefig(user_time_plots['cut_file_name'], format="jpeg", dpi=300)
 
