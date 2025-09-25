@@ -714,3 +714,76 @@ def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scalin
 
     plt.tight_layout()
     return f, ax
+
+def single_cut_of_data(table, 
+                       filter_dict = {
+                           'sex':'ALL', 
+                           'age_band':'10 to 17'
+                           },
+                        nhs_palette = nhs_palette
+                       ):
+    
+    """
+    Filters the input DataFrame based on the specified criteria and generates a combined line and bar plot.
+    Parameters
+    ----------
+    table : pandas.DataFrame
+        The input data containing at least the columns 'sex', 'age_band', 'year_of_medication', 'median', and 'size'.
+    filter_dict : dict, optional
+        Dictionary specifying column-value pairs to filter the data. Default is {'sex': 'ALL', 'age_band': '10 to 17'}.
+    nhs_palette : dict or list
+        Color palette to use for the plots, passed to seaborn plotting functions.
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        The matplotlib Figure object containing the plot.
+    axes : matplotlib.axes.Axes
+        The primary matplotlib Axes object for the line plot.
+    Notes
+    -----
+    - The function filters the DataFrame according to `filter_dict`.
+    - The 'year_of_medication' column is converted to a string and truncated to the first 4 characters to create a 'year' column.
+    - A line plot of 'median' by 'year' is created, colored by 'age_band'.
+    - A secondary y-axis bar plot of 'size' by 'year' is overlaid, also colored by 'age_band'.
+    """
+    
+    #Do some filter
+    for each_column in filter_dict:
+        table = table[
+            table[each_column] == filter_dict[each_column]
+            ]
+        
+    #Need to covert the cols
+    table['year'] = table['year_of_medication'].astype(str).str[:4]
+
+    fig, axes = plt.subplots(1, figsize = (5,5))  # Changed to 2 rows, 1 column
+
+    sns.lineplot(
+        x="year",
+        y="median",
+        hue="age_band",
+        data=table,
+        ax=axes,
+        palette=nhs_palette,
+    )
+    axes.set_ylabel("Median Time Weeks")
+    axes.set_xlabel("Year")
+    axes.set_title("Male - Time between Diagnosis to Medication")
+
+    ax_tmp = axes.twinx()
+    sns.barplot(
+        x="year", 
+        y="size", 
+        hue="age_band", 
+        data=table, 
+        palette=nhs_palette, 
+        alpha=0.3, 
+        dodge=True,
+        ax=ax_tmp
+    )
+
+    ax_tmp.set_ylabel("Count of Patients")
+
+    plt.tight_layout()
+
+    return fig, axes
