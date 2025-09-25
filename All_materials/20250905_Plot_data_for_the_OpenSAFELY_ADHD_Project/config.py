@@ -20,7 +20,7 @@ monthly_interval_plot = {
 }
 
 bland_altman_plt = {
-    'file_path_emis':'All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England/emis_measure.csv',
+    'file_path_emis':'All_materials/20250905_ADHD_Prevalence_EMIS_and_Cegedim/emis_measure.csv',
     'file_path_tpp' : 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_2_Prevalence_of_ADHD_Diagnosis.csv',
     'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.jpeg',
     'watermark':'TEST DATA - NOT REAL',
@@ -29,7 +29,7 @@ bland_altman_plt = {
 }
 
 dia_plots = {
-    'file_path':'All_materials/20250905_Calculating_ADHD_prevalence_rate_from_EMIS_and_Cegedim_records_using_open_source_data_from_NHS_England/emis_measure.csv',
+    'file_path':'All_materials/20250905_ADHD_Prevalence_EMIS_and_Cegedim/emis_measure.csv',
     'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg',
     'watermark':'EMIS + Cegedim',
     'top_left':{
@@ -44,4 +44,5 @@ dia_plots = {
     'bottom_right':{
         'title':'ADHD Diagnosis Prevalence and Counts by Age Band (65 and over)',
     },
+    'cut_file_name': 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.jpeg',
 }

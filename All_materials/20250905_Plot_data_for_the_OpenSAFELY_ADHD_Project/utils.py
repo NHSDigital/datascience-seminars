@@ -761,4 +761,5 @@ def single_cut_of_data(table,
     ax_tmp.set_ylabel("Count of Patients")
 
     plt.tight_layout()
-    plt.show()
+
+    return fig, axes
