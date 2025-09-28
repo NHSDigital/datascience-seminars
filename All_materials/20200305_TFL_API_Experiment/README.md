@@ -1,5 +1,5 @@
 > [!NOTE]  
-> The following was a project from the [ONS Data Science Accelerator programme]( https://www.gov.uk/government/publications/data-science-accelerator-programme/introduction-to-the-data-science-accelerator-programme) which started in late February 2020. The project was subsequently paused and subsequently abandoned due to the Covid 19 pandemic.
+> The following was a project from the [ONS Data Science Accelerator programme]( https://www.gov.uk/government/publications/data-science-accelerator-programme/introduction-to-the-data-science-accelerator-programme) which started in late February 2020. The project was subsequently paused and then abandoned due to the Covid 19 pandemic.
 
 # Fairness of hospital transportation in London
 
