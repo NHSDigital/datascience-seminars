@@ -21,3 +21,6 @@ This folder contains scripts and configuration files used to generate visualizat
 
 ## Time between Diagnosis to Medication
 ![Time between Diagonsis to Medication](/All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_5_time_from_diagnosis_to_treatment.svg)
+
+
+![Single Cut of Time between Diagonsis to Medication](/All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.svg)
