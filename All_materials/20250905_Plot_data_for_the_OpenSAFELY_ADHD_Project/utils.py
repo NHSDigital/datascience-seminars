@@ -121,6 +121,23 @@ def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], year_co
 
     return output
 
+def determine_decimal_percentage_place_of_axis(axis):
+
+    #Getting the y limits
+    y_limits = axis.get_ylim()
+
+    #Need to get largest vaules by absoulte vaule
+    y_limits = np.absolute(y_limits)
+    y_max_vaule = max(y_limits)
+
+    #Need to detemine the decile of the vaule
+
+    print(y_limits)
+
+    #Need to 
+
+    return None
+
 def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, age_group_old, nhs_palette = nhs_palette ):
     """
     Plots ADHD prevalence and count charts by sex and age bands.
@@ -182,6 +199,8 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1,
              )
     ax_tmp0.get_legend().remove()
+    #Setting up the axis
+    determine_decimal_percentage_place_of_axis(axes[0, 0])
 
     # Young age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_young, ax=axes[0, 1], palette=nhs_palette)
@@ -373,6 +392,7 @@ def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette
     time_between_dia_and_med = time_between_dia_and_med[~time_between_dia_and_med.isin(['ALL']).any(axis=1)]
     # Convert year_of_medication to year string
     time_between_dia_and_med['year'] = time_between_dia_and_med['year_of_medication'].astype(str).str[:4]
+    time_between_dia_and_med =  sort_and_formal_name(time_between_dia_and_med, col_name = "year")
 
     # Split by sex
     time_males_table = time_between_dia_and_med[time_between_dia_and_med['sex'].isin(['male'])]

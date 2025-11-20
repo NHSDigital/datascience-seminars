@@ -50,7 +50,7 @@ fig, axes = utils.plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt,
 
 axes = utils.watermark_plot(axes,bland_altman_plt['watermark'])
 
-plt.savefig(bland_altman_plt['file_name'], format="jpeg", dpi=300)
+plt.savefig(bland_altman_plt['file_name'], format=save_plots_config['file_type'], dpi=300)
 
 """
 Ploting tables with monthly intervals
