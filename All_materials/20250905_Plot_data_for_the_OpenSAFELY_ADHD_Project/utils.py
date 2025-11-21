@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import os
+from matplotlib.axis import YAxis
 
 import matplotlib.ticker as mtick
 import matplotlib.transforms as transforms
@@ -185,38 +186,57 @@ def float_to_2dp_by_default(number_float):
     else:
         return "{:.1f}".format(number_float)
 
-def determine_decimal_percentage_place_of_axis(axis):
+def determine_decimal_percentage_place_of_axis(axis, axis_method = None):
     """
-    Determine and set an appropriate number of decimal places for y-axis tick labels.
+    Determine and apply a sensible number of decimal places for an axis formatter.
+
+    This function inspects the current y-limits of the provided axis object, determines
+    the order of magnitude of the largest absolute y-limit, and then sets a
+    matplotlib.ticker.FormatStrFormatter with an appropriate number of decimal places.
+
+    Formatting rule:
+    - If the order of magnitude is <= -2 (i.e. values smaller than 0.01), the number
+        of decimal places is set to abs(order_of_magnitude) + 1. Example: a max value of
+        0.001 (order_of_magnitude = -3) yields 4 decimal places ('%.4f').
+    - Otherwise, the formatter is set to one decimal place ('%.1f').
 
     Parameters
     ----------
-    axis : matplotlib.axes.Axes
-        A matplotlib axis object whose y-axis formatter will be adjusted. The
-        function inspects axis.get_ylim() to find the largest absolute y-value and
-        chooses a sensible number of decimal places for formatting tick labels.
+    axis : object
+            An axis-like object with a get_ylim() method that returns (ymin, ymax)
+            and (by default) a yaxis attribute with set_major_formatter method
+            (i.e. a matplotlib.axes.Axes instance or similar).
+    axis_method : callable, optional
+            A callable used to apply the formatter. It must accept a matplotlib
+            Formatter instance (for example, matplotlib.ticker.FormatStrFormatter).
+            If None (default), axis.yaxis.set_major_formatter is used.
 
-    Behavior / Side effects
-    -----------------------
-    - Computes the order of magnitude of the largest absolute y-limit using numpy.
-    - If the order of magnitude is <= -2 (i.e., values smaller than 0.01), the
-      formatter is set to display an integer number of decimal places equal to
-      abs(order_of_mag) + 1 (for greater precision on very small values).
-    - Otherwise, the y-axis formatter is set to show one decimal place ('%.1f').
-    - The function modifies axis.yaxis in-place via matplotlib.ticker.FormatStrFormatter
-      and does not return a value.
+    Returns
+    -------
+    None
+            The function has only side effects: it applies the chosen formatter to
+            the axis via the provided axis_method.
 
-    Notes
-    -----
-    - Assumes numeric, finite y-limits; behavior is undefined for non-finite limits
-      (NaN or inf).
-    - Requires numpy and matplotlib.ticker.FormatStrFormatter to be available.
+    Notes and edge cases
+    --------------------
+    - The function relies on numpy (np.log10, np.floor, np.abs) and
+        matplotlib.ticker.FormatStrFormatter being available in the caller's scope.
+    - If both y-limits are zero (so the maximum absolute y-limit is 0), numpy.log10(0)
+        yields -inf and converting that magnitude to an integer will raise an error.
+        Therefore the axis y-limits must not be both zero.
+    - axis_method must be callable; otherwise a TypeError will be raised when calling it.
 
     Example
     -------
-    >>> determine_decimal_percentage_place_of_axis(ax)
-    # After calling, ax.yaxis major labels will use an appropriate decimal format
+    # Default behavior: set formatter for the y-axis of ax
+    determine_decimal_percentage_place_of_axis(ax)
+
+    # Provide a custom setter (e.g. set formatter for x-axis instead)
+    determine_decimal_percentage_place_of_axis(ax, axis_method=ax.xaxis.set_major_formatter)
     """
+
+    if axis_method is None:
+        axis_method = axis.yaxis.set_major_formatter
 
     #Getting the y limits
     y_limits = axis.get_ylim()
@@ -232,9 +252,9 @@ def determine_decimal_percentage_place_of_axis(axis):
     if order_of_mag <= -2:
         #Set to an integer number of decimal places
         dp = int(np.abs(order_of_mag)) + 1
-        axis.yaxis.set_major_formatter(FormatStrFormatter(f'%.{dp}f'))
+        axis_method(FormatStrFormatter(f'%.{dp}f'))
     else: 
-        axis.yaxis.set_major_formatter(FormatStrFormatter('%.1f')) 
+        axis_method(FormatStrFormatter('%.1f')) 
 
 def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, age_group_old, nhs_palette = nhs_palette ):
     """
@@ -976,6 +996,7 @@ def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scalin
     ax.set_ylabel("Prevalence from TPP minus\nPrevalence from EMIS+Cegedim, %")
     determine_decimal_percentage_place_of_axis(ax)
     ax.set_xlabel("Mean Prevalence TPP and EMIS+Cegedim, %")
+    determine_decimal_percentage_place_of_axis(ax, axis_method = ax.xaxis.set_major_formatter)
 
     if custom_scaling:
         y_lower, y_upper = ax.get_ylim()
