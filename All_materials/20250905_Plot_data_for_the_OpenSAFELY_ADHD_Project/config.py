@@ -1,29 +1,34 @@
 
 # From https://www.england.nhs.uk/nhsidentity/identity-guidelines/colours/
-nhs_palette = ["#003087",'#7C2855', "#DA291C", "#ED8B00", "#006747"]
+nhs_palette = ["#12436D",'#28A197', "#801650", "#F46A25", "#3D3D3D","#A285D1"]
 
 pre_processing = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files',
     'marker':'FAKE_DATA',
 }
 
+save_plots_config = {
+    'file_type':'svg',
+    'dpi': 500
+}
+
 user_time_plots = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_5_time_from_diagnosis_to_treatment.csv',
-    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_5_time_from_diagnosis_to_treatment.jpeg',
+    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_5_time_from_diagnosis_to_treatment.svg',
     'watermark':'TEST DATA - NOT REAL',
-    'cut_file_name': 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.jpeg',
+    'cut_file_name': 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Cut_Time_average.svg',
 }
 
 monthly_interval_plot = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.csv',
-    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg',
+    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.svg',
     'watermark':'TEST DATA\nNOT REAL',
 }
 
 bland_altman_plt = {
     'file_path_emis':'All_materials/20250905_ADHD_Prevalence_EMIS_and_Cegedim/emis_measure.csv',
     'file_path_tpp' : 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_2_Prevalence_of_ADHD_Diagnosis.csv',
-    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.jpeg',
+    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.svg',
     'watermark':'TEST DATA - NOT REAL',
     'joining_cols' : ['interval_start','interval_end','sex','age_band'],
     'suffixes' : ('_tpp','_emis'),
@@ -31,7 +36,7 @@ bland_altman_plt = {
 
 dia_plots = {
     'file_path':'All_materials/20250905_ADHD_Prevalence_EMIS_and_Cegedim/emis_measure.csv',
-    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg',
+    'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_2_Prevalence_of_ADHD_Diagnosis.svg',
     'watermark':'EMIS + Cegedim',
     'top_left':{
         'title':'ADHD Diagnosis Prevalence and Counts by Sex',

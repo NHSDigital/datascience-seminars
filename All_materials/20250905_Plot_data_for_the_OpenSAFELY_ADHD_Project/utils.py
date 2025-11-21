@@ -6,6 +6,7 @@ import os
 
 import matplotlib.ticker as mtick
 import matplotlib.transforms as transforms
+from matplotlib.ticker import FormatStrFormatter
 
 from config import nhs_palette
 
@@ -121,6 +122,57 @@ def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], year_co
 
     return output
 
+def determine_decimal_percentage_place_of_axis(axis):
+    """
+    Determine and set an appropriate number of decimal places for y-axis tick labels.
+
+    Parameters
+    ----------
+    axis : matplotlib.axes.Axes
+        A matplotlib axis object whose y-axis formatter will be adjusted. The
+        function inspects axis.get_ylim() to find the largest absolute y-value and
+        chooses a sensible number of decimal places for formatting tick labels.
+
+    Behavior / Side effects
+    -----------------------
+    - Computes the order of magnitude of the largest absolute y-limit using numpy.
+    - If the order of magnitude is <= -2 (i.e., values smaller than 0.01), the
+      formatter is set to display an integer number of decimal places equal to
+      abs(order_of_mag) + 1 (for greater precision on very small values).
+    - Otherwise, the y-axis formatter is set to show one decimal place ('%.1f').
+    - The function modifies axis.yaxis in-place via matplotlib.ticker.FormatStrFormatter
+      and does not return a value.
+
+    Notes
+    -----
+    - Assumes numeric, finite y-limits; behavior is undefined for non-finite limits
+      (NaN or inf).
+    - Requires numpy and matplotlib.ticker.FormatStrFormatter to be available.
+
+    Example
+    -------
+    >>> determine_decimal_percentage_place_of_axis(ax)
+    # After calling, ax.yaxis major labels will use an appropriate decimal format
+    """
+
+    #Getting the y limits
+    y_limits = axis.get_ylim()
+
+    #Need to get largest vaules by absoulte vaule
+    y_limits = np.absolute(y_limits)
+    y_max_vaule = max(y_limits)
+
+    #Need to detemine the decile of the vaule
+    order_of_mag = np.floor(np.log10(y_max_vaule))
+
+    #Need to set the dp
+    if order_of_mag <= -2:
+        #Set to an integer number of decimal places
+        dp = int(np.abs(order_of_mag)) + 1
+        axis.yaxis.set_major_formatter(FormatStrFormatter(f'%.{dp}f'))
+    else: 
+        axis.yaxis.set_major_formatter(FormatStrFormatter('%.1f')) 
+
 def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, age_group_old, nhs_palette = nhs_palette ):
     """
     Plots ADHD prevalence and count charts by sex and age bands.
@@ -157,7 +209,12 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     - The function assumes the input DataFrames are properly formatted and indexed.
     """
 
-    
+    #Need to convert the tables
+    sex_group = sort_and_formal_name(sex_group)
+    age_group_young = sort_and_formal_name(age_group_young)
+    age_group_middle = sort_and_formal_name(age_group_middle)
+    age_group_old = sort_and_formal_name(age_group_old)
+
     fig, axes = plt.subplots(2, 2, figsize=(15.7, 15.3))  # A4 landscape in inches
 
     # By sex
@@ -177,6 +234,8 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1,
              )
     ax_tmp0.get_legend().remove()
+    #Setting up the axis
+    determine_decimal_percentage_place_of_axis(axes[0, 0])
 
     # Young age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_young, ax=axes[0, 1], palette=nhs_palette)
@@ -195,6 +254,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp1.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[0, 1])
 
     # Middle age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_middle, ax=axes[1, 0], palette=nhs_palette)
@@ -213,6 +273,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp2.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[1, 0])
 
     # Old age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_old, ax=axes[1, 1], palette=nhs_palette)
@@ -230,6 +291,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp3.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[1, 1])
 
     plt.tight_layout()
 
@@ -297,39 +359,78 @@ def watermark_plot(axes, watermark_string):
             )
     return axes
     
-def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette):
+def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette,
+                                           include_bar_chart = False):
+    
     """
-    Plots the median time (in weeks) from diagnosis to medication for ADHD patients, split by sex and age band.
+    Plot median time (in weeks) from diagnosis to medication by year, sex, and age band.
 
-    This function creates two subplots:
-    - The first subplot displays data for male patients.
-    - The second subplot displays data for female patients.
+    This function creates a two-row matplotlib figure with separate subplots for male and female
+    patients. For each sex it draws a seaborn lineplot of the median time between diagnosis and
+    medication across years, with separate lines for each age band. Optionally, a semi-transparent
+    bar chart showing patient counts (column "size") can be overlaid on a secondary y-axis.
 
-    Each subplot contains:
-    - A line plot showing the median time from diagnosis to medication per year, colored by age band.
-    - A bar plot (on a secondary y-axis) showing the count of patients per year, also colored by age band.
+    Important behavior:
+    - Rows that contain the string 'ALL' in any column are removed prior to plotting.
+    - A new column 'year' is created by converting the 'year_of_medication' column to string and
+        extracting the first four characters (typically the YYYY year). Note: this assignment may
+        trigger a pandas SettingWithCopyWarning or modify the provided DataFrame; pass a copy
+        if you wish to avoid side effects.
+    - The function expects categorical sex values 'male' and 'female' (case-sensitive) and will
+        split the data accordingly.
 
     Parameters
     ----------
     time_between_dia_and_med : pandas.DataFrame
-        DataFrame containing columns 'year_of_medication', 'sex', 'age_band', 'median', and 'size'.
-        Rows with 'ALL' in any column are excluded from the plots.
+            DataFrame containing at minimum the following columns:
+                - 'year_of_medication' : convertible to string; the first 4 characters are used as year.
+                - 'sex' : values expected include 'male' and 'female'.
+                - 'age_band' : categorical/grouping column used as the hue for plots.
+                - 'median' : numeric median time (weeks) to be plotted on the primary y-axis.
+                - 'size' : numeric count used for optional bar charts on the secondary y-axis.
+            Any rows containing the exact string 'ALL' in any column are removed prior to plotting.
 
-    nhs_palette : list or dict
-        Color palette to use for age bands in the plots.
+    nhs_palette : matplotlib-compatible color palette
+            Palette passed to seaborn plotting functions. Can be a seaborn/matplotlib palette name,
+            list of colors, or a dict mapping levels of 'age_band' to colors.
+
+    include_bar_chart : bool, optional (default=False)
+            If True, a bar plot of patient counts ('size') is drawn on a secondary y-axis for each
+            sex subplot. Bars are drawn with alpha=0.3 and are dodged by 'age_band'.
 
     Returns
     -------
-    fig : matplotlib.figure.Figure
-        The matplotlib Figure object containing the plots.
+    matplotlib.figure.Figure
+            The created matplotlib Figure object.
 
-    axes : numpy.ndarray of matplotlib.axes.Axes
-        Array of Axes objects for the male and female subplots.
+    numpy.ndarray
+            An array-like of two Axes objects (shape (2,)), corresponding to the male (index 0)
+            and female (index 1) subplots.
+
+    Raises
+    ------
+    KeyError
+            If any required columns ('year_of_medication', 'sex', 'age_band', 'median', 'size') are
+            missing from the input DataFrame.
+
+    Notes
+    -----
+    - The function uses seaborn.lineplot and seaborn.barplot with matplotlib.twinx to overlay
+        counts on a secondary y-axis. Axis labels, titles and tight layout are applied automatically.
+    - The function filters sex values using exact matches to 'male' and 'female'; data with other
+        sex encodings will not appear in the plots unless pre-normalized.
+
+    Example
+    -------
+    # Assuming `df` is a DataFrame with the required columns and `palette` is defined:
+    fig, axes = plot_time_from_diagnosis_to_medication(df, nhs_palette=palette, include_bar_chart=True)
     """
+
     # Remove rows with 'ALL' in any column
     time_between_dia_and_med = time_between_dia_and_med[~time_between_dia_and_med.isin(['ALL']).any(axis=1)]
     # Convert year_of_medication to year string
     time_between_dia_and_med['year'] = time_between_dia_and_med['year_of_medication'].astype(str).str[:4]
+    time_between_dia_and_med =  sort_and_formal_name(time_between_dia_and_med, col_name = "year")
 
     # Split by sex
     time_males_table = time_between_dia_and_med[time_between_dia_and_med['sex'].isin(['male'])]
@@ -350,18 +451,19 @@ def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette
     axes[0].set_xlabel("Year")
     axes[0].set_title("Male - Time between Diagnosis to Medication")
 
-    ax_tmp = axes[0].twinx()
-    sns.barplot(
-        x="year",
-        y="size",
-        hue="age_band",
-        data=time_males_table,
-        palette=nhs_palette,
-        alpha=0.3,
-        dodge=True,
-        ax=ax_tmp
-    )
-    ax_tmp.set_ylabel("Count of Patients")
+    if include_bar_chart:
+        ax_tmp = axes[0].twinx()
+        sns.barplot(
+            x="year",
+            y="size",
+            hue="age_band",
+            data=time_males_table,
+            palette=nhs_palette,
+            alpha=0.3,
+            dodge=True,
+            ax=ax_tmp
+        )
+        ax_tmp.set_ylabel("Count of Patients")
 
     # Females plot
     sns.lineplot(
@@ -376,18 +478,19 @@ def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette
     axes[1].set_xlabel("Year")
     axes[1].set_title("Female - Time between Diagnosis to Medication")
 
-    ax_tmp = axes[1].twinx()
-    sns.barplot(
-        x="year",
-        y="size",
-        hue="age_band",
-        data=time_females_table,
-        palette=nhs_palette,
-        alpha=0.3,
-        dodge=True,
-        ax=ax_tmp
-    )
-    ax_tmp.set_ylabel("Count of Patients")
+    if include_bar_chart:
+        ax_tmp = axes[1].twinx()
+        sns.barplot(
+            x="year",
+            y="size",
+            hue="age_band",
+            data=time_females_table,
+            palette=nhs_palette,
+            alpha=0.3,
+            dodge=True,
+            ax=ax_tmp
+        )
+        ax_tmp.set_ylabel("Count of Patients")
 
     plt.tight_layout()
     return fig, axes
@@ -433,6 +536,7 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     axes[0, 0].set_ylabel("Percentage")
     axes[0, 0].set_xlabel("Year")
     axes[0, 0].set_title("Percentage of Patients with ADHD that had\nan ADHD medication in the previous 6 months")
+    determine_decimal_percentage_place_of_axis(axes[0, 0])
 
     # By sex - count
     sns.lineplot(x="interval_start", y="numerator", hue="sex", data=sex_group, ax=axes[0, 1], palette=nhs_palette)
@@ -445,6 +549,7 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     axes[1, 0].set_ylabel("Percentage")
     axes[1, 0].set_xlabel("Year")
     axes[1, 0].set_title("Percentage of Patients with ADHD that had\nan ADHD medication in the previous 6 months")
+    determine_decimal_percentage_place_of_axis(axes[1, 0])
 
     # By age band - count
     sns.lineplot(x="interval_start", y="numerator", hue="age_band", data=age_group, ax=axes[1, 1], palette=nhs_palette)
@@ -464,6 +569,106 @@ def _import_mpl():
 
     return plt
 
+def change_to_correct_form(date_col):
+    """
+    Convert a column/Series of date-like values into a "YYYY/YY" year-range string.
+
+    This function expects a pandas Series (or array-like) where each entry, when
+    cast to str, begins with a four-digit year (characters 0:4). It extracts that
+    four-digit year, computes the next year, and returns a Series of strings in
+    the form "YYYY/YY" where "YY" are the last two digits of the following year
+    (e.g. "2023/24").
+
+    Parameters
+    ----------
+    date_col : pandas.Series or array-like
+        Series or array-like of date-like values (e.g., datetime64, "YYYY-MM-DD",
+        "YYYY", or similar). Values are converted to str and the first four
+        characters are interpreted as the year.
+
+    Returns
+    -------
+    pandas.Series
+        Series of strings formatted as "YYYY/YY" (object dtype). For example,
+        an input year of 2023 becomes "2023/24".
+
+    Raises
+    ------
+    ValueError, TypeError
+        If an entry cannot be converted to a string with a valid four-digit year
+        at positions 0:4, casting to int will raise an error (e.g., for NaN,
+        very short strings, or non-date-like values).
+
+    Notes
+    -----
+    - Leading/trailing whitespace or unexpected formats may produce incorrect
+      results or raise exceptions because the function unconditionally slices the
+      first four characters and converts them to int.
+    - NaN values in the input will generally cause an error when casting to int.
+      Pre-clean the input if you need to preserve or handle missing values.
+    - The function does not localize or interpret fiscal calendars beyond the
+      simple next-year string formatting.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> change_to_correct_form(pd.Series(["2023-01-01", "2020-12-31"]))
+    0    2023/24
+    1    2020/21
+    dtype: object
+    """
+
+    table_current_year = date_col.astype(str).str[0:4].astype(int)
+
+    table_next_year = table_current_year + 1
+
+    final_form = table_current_year.astype(str) + '/' + table_next_year.astype(str).str[-2:]
+
+    return final_form
+
+    
+def sort_and_formal_name(table, col_name = "interval_start"):
+    """
+    Transform and standardize the values of a DataFrame column using a helper function.
+
+    This function applies the helper function `change_to_correct_form` to the specified
+    column of a pandas DataFrame, assigns the transformed values back to that column,
+    and returns the DataFrame. The operation updates the provided DataFrame in place.
+
+    Parameters
+    ----------
+    table : pandas.DataFrame
+        DataFrame containing the column to transform.
+    col_name : str, optional
+        Name of the column to be transformed. Default is "interval_start".
+
+    Returns
+    -------
+    pandas.DataFrame
+        The same DataFrame instance with `col_name` replaced by the transformed values.
+
+    Notes
+    -----
+    - `change_to_correct_form` must be defined in the calling module and should accept
+      a pandas Series (or array-like) and return a Series or array-like of compatible length.
+    - Because the assignment `table[col_name] = ...` modifies the DataFrame in place,
+      pass a copy (e.g., `table.copy()`) if you need to preserve the original.
+    - If `col_name` is not present in `table`, a KeyError will be raised.
+    - Errors raised by `change_to_correct_form` (e.g., TypeError, ValueError) will propagate.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({"interval_start": ["2020-01-01", "2020-02-01"]})
+    >>> # Assuming change_to_correct_form converts strings to pandas.Timestamp
+    >>> sort_and_formal_name(df)
+    # df["interval_start"] is now transformed by change_to_correct_form
+    """
+
+    #Need to rename
+    table[col_name] = change_to_correct_form(table[col_name])
+
+    return table
 
 def create_mpl_ax(ax=None):
     """Helper function for when a single plot axis is needed.
@@ -706,6 +911,7 @@ def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scalin
         fontsize=18
     )
     ax.set_ylabel("Prevalence from TPP minus\nPrevalence from EMIS+Cegedim, %")
+    determine_decimal_percentage_place_of_axis(ax)
     ax.set_xlabel("Mean Prevalence TPP and EMIS+Cegedim, %")
 
     if custom_scaling:

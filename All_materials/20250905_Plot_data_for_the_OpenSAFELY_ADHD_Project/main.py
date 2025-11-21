@@ -6,7 +6,8 @@ from config import (dia_plots,
                     user_time_plots, 
                     monthly_interval_plot, 
                     bland_altman_plt,
-                    pre_processing
+                    pre_processing,
+                    save_plots_config
 )
 import utils 
 
@@ -34,7 +35,8 @@ axes[1, 1].set_title(dia_plots['bottom_right']['title'])
 
 axes = utils.watermark_plot(axes,dia_plots['watermark'])
 
-fig.savefig(dia_plots['file_name'], format="jpeg", dpi=300)
+fig.savefig(dia_plots['file_name'], format=save_plots_config['file_type'], 
+            dpi=save_plots_config['dpi'])
 
 """
 Ploting the Bland-Altman plot
@@ -48,7 +50,7 @@ fig, axes = utils.plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt,
 
 axes = utils.watermark_plot(axes,bland_altman_plt['watermark'])
 
-plt.savefig(bland_altman_plt['file_name'], format="jpeg", dpi=300)
+plt.savefig(bland_altman_plt['file_name'], format=save_plots_config['file_type'], dpi=300)
 
 """
 Ploting tables with monthly intervals
@@ -60,7 +62,8 @@ fig, axes = utils.plot_monthly_interval_charts(table3_percentage, nhs_palette)
 
 axes = utils.watermark_plot(axes,monthly_interval_plot['watermark'])
 
-fig.savefig(monthly_interval_plot['file_name'], format="jpeg", dpi=300)
+fig.savefig(monthly_interval_plot['file_name'], format=save_plots_config['file_type'], 
+            dpi=save_plots_config['dpi'])
 
 
 """
@@ -73,7 +76,8 @@ fig, axes = utils.plot_time_from_diagnosis_to_medication(time_between_dia_and_me
 
 axes = utils.watermark_plot(axes,user_time_plots['watermark'])
 
-fig.savefig(user_time_plots['file_name'], format="jpeg", dpi=300)
+fig.savefig(user_time_plots['file_name'], format=save_plots_config['file_type'], 
+            dpi=save_plots_config['dpi'])
 
 """
 Single cut of time between diagonsis to medication
@@ -85,6 +89,7 @@ fig, axes = utils.single_cut_of_data(time_between_dia_and_med)
 
 axes = utils.watermark_plot(axes,monthly_interval_plot['watermark'])
 
-fig.savefig(user_time_plots['cut_file_name'], format="jpeg", dpi=300)
+fig.savefig(user_time_plots['cut_file_name'], format=save_plots_config['file_type'], 
+            dpi=save_plots_config['dpi'])
 
 
