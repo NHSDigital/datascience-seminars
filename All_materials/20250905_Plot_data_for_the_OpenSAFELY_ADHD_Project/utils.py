@@ -6,6 +6,7 @@ import os
 
 import matplotlib.ticker as mtick
 import matplotlib.transforms as transforms
+from matplotlib.ticker import FormatStrFormatter
 
 from config import nhs_palette
 
@@ -122,6 +123,37 @@ def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], year_co
     return output
 
 def determine_decimal_percentage_place_of_axis(axis):
+    """
+    Determine and set an appropriate number of decimal places for y-axis tick labels.
+
+    Parameters
+    ----------
+    axis : matplotlib.axes.Axes
+        A matplotlib axis object whose y-axis formatter will be adjusted. The
+        function inspects axis.get_ylim() to find the largest absolute y-value and
+        chooses a sensible number of decimal places for formatting tick labels.
+
+    Behavior / Side effects
+    -----------------------
+    - Computes the order of magnitude of the largest absolute y-limit using numpy.
+    - If the order of magnitude is <= -2 (i.e., values smaller than 0.01), the
+      formatter is set to display an integer number of decimal places equal to
+      abs(order_of_mag) + 1 (for greater precision on very small values).
+    - Otherwise, the y-axis formatter is set to show one decimal place ('%.1f').
+    - The function modifies axis.yaxis in-place via matplotlib.ticker.FormatStrFormatter
+      and does not return a value.
+
+    Notes
+    -----
+    - Assumes numeric, finite y-limits; behavior is undefined for non-finite limits
+      (NaN or inf).
+    - Requires numpy and matplotlib.ticker.FormatStrFormatter to be available.
+
+    Example
+    -------
+    >>> determine_decimal_percentage_place_of_axis(ax)
+    # After calling, ax.yaxis major labels will use an appropriate decimal format
+    """
 
     #Getting the y limits
     y_limits = axis.get_ylim()
@@ -131,12 +163,15 @@ def determine_decimal_percentage_place_of_axis(axis):
     y_max_vaule = max(y_limits)
 
     #Need to detemine the decile of the vaule
+    order_of_mag = np.floor(np.log10(y_max_vaule))
 
-    print(y_limits)
-
-    #Need to 
-
-    return None
+    #Need to set the dp
+    if order_of_mag <= -2:
+        #Set to an integer number of decimal places
+        dp = int(np.abs(order_of_mag)) + 1
+        axis.yaxis.set_major_formatter(FormatStrFormatter(f'%.{dp}f'))
+    else: 
+        axis.yaxis.set_major_formatter(FormatStrFormatter('%.1f')) 
 
 def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, age_group_old, nhs_palette = nhs_palette ):
     """
@@ -219,6 +254,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp1.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[0, 1])
 
     # Middle age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_middle, ax=axes[1, 0], palette=nhs_palette)
@@ -237,6 +273,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp2.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[1, 0])
 
     # Old age bands
     sns.lineplot(x="interval_start", y="ratio", hue="age_band", data=age_group_old, ax=axes[1, 1], palette=nhs_palette)
@@ -254,6 +291,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
              labelspacing = 0.1, columnspacing = 0.1
              )
     ax_tmp3.get_legend().remove()
+    determine_decimal_percentage_place_of_axis(axes[1, 1])
 
     plt.tight_layout()
 
@@ -498,6 +536,7 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     axes[0, 0].set_ylabel("Percentage")
     axes[0, 0].set_xlabel("Year")
     axes[0, 0].set_title("Percentage of Patients with ADHD that had\nan ADHD medication in the previous 6 months")
+    determine_decimal_percentage_place_of_axis(axes[0, 0])
 
     # By sex - count
     sns.lineplot(x="interval_start", y="numerator", hue="sex", data=sex_group, ax=axes[0, 1], palette=nhs_palette)
@@ -510,6 +549,7 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     axes[1, 0].set_ylabel("Percentage")
     axes[1, 0].set_xlabel("Year")
     axes[1, 0].set_title("Percentage of Patients with ADHD that had\nan ADHD medication in the previous 6 months")
+    determine_decimal_percentage_place_of_axis(axes[1, 0])
 
     # By age band - count
     sns.lineplot(x="interval_start", y="numerator", hue="age_band", data=age_group, ax=axes[1, 1], palette=nhs_palette)
@@ -871,6 +911,7 @@ def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scalin
         fontsize=18
     )
     ax.set_ylabel("Prevalence from TPP minus\nPrevalence from EMIS+Cegedim, %")
+    determine_decimal_percentage_place_of_axis(ax)
     ax.set_xlabel("Mean Prevalence TPP and EMIS+Cegedim, %")
 
     if custom_scaling:
