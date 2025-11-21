@@ -122,6 +122,69 @@ def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], year_co
 
     return output
 
+def float_to_2dp_by_default(number_float):
+    """
+    Format a floating-point number into a string with a sensible number of decimal places.
+
+    This function returns a string representation of number_float using a default of one
+    decimal place for most values, but it increases the number of decimal places for
+    very small magnitudes to preserve significant digits.
+
+    Behavior:
+    - If the absolute magnitude is zero or the value is not finite (NaN or ±inf), the
+        function returns a one-decimal-place formatted string using "{:.1f}".
+    - For values whose order of magnitude is less than -2 (i.e., |x| < 1e-2), the
+        function computes extra decimal places as dp = abs(floor(log10(|x|))) + 1 and
+        formats the number using that many decimal places (f"{{:.{dp}f}}").
+    - For all other finite nonzero values (|x| >= 1e-2), the function formats with
+        one decimal place ("{:.1f}").
+
+    Parameters
+    ----------
+    number_float : float
+            The number to format. The function expects numpy to be available as it uses
+            numpy functions (np.absolute and np.isfinite) internally.
+
+    Returns
+    -------
+    str
+            A string representation of number_float formatted according to the rules
+            described above. The returned string preserves the sign of the input.
+
+    Examples
+    --------
+    - float_to_2dp_by_default(123.456) -> "123.5"
+    - float_to_2dp_by_default(0.01234) -> "0.01"
+    - float_to_2dp_by_default(0.001234) -> "0.0012"  # more decimals for small numbers
+    - float_to_2dp_by_default(0.0) -> "0.0"
+    - float_to_2dp_by_default(float('nan')) -> "nan"  # formatted via "{:.1f}"
+
+    Notes
+    -----
+    - The function aims to balance readability and precision: most numbers are shown
+        with a single decimal place, while very small numbers are shown with extra
+        decimals so their leading significant digits are visible.
+    - Because formatting of NaN and infinities relies on Python's float formatting,
+        those values will appear as "nan", "inf", or "-inf" when passed through the
+        "{:.1f}" formatter.
+    """
+
+    #Find the order of mag
+    mag_value = np.absolute(number_float)
+
+    # Handle zero or non-finite values to avoid log10 errors
+    if mag_value == 0 or not np.isfinite(mag_value):
+        return "{:.1f}".format(number_float)
+
+    #Need to detemine the decile of the vaule
+    order_of_mag = np.floor(np.log10(mag_value))
+
+    if order_of_mag < -2:
+        dp = int(np.abs(order_of_mag)) + 1
+        return f"{number_float:.{dp}f}"
+    else:
+        return "{:.1f}".format(number_float)
+
 def determine_decimal_percentage_place_of_axis(axis):
     """
     Determine and set an appropriate number of decimal places for y-axis tick labels.
@@ -819,7 +882,7 @@ def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
     ax.axhline(mean_diff, **mean_line_kwds)  # draw mean line.
 
     # Annotate mean line with mean difference.
-    ax.annotate(f'mean diff:\n{np.round(mean_diff, 4)}',
+    ax.annotate(f'mean diff:\n{float_to_2dp_by_default(mean_diff)}',
                 xy=(0.99, 0.5),
                 horizontalalignment='right',
                 verticalalignment='center',
@@ -835,13 +898,13 @@ def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
         upper = mean_diff + limit_of_agreement
         for j, lim in enumerate([lower, upper]):
             ax.axhline(lim, **limit_lines_kwds)
-        ax.annotate(f'-{sd_limit} SD: {lower:0.2g}',
+        ax.annotate(f'-{sd_limit} SD: {float_to_2dp_by_default(lower)}',
                     xy=(0.99, 0.07),
                     horizontalalignment='right',
                     verticalalignment='bottom',
                     fontsize=14,
                     xycoords='axes fraction')
-        ax.annotate(f'+{sd_limit} SD: {upper:0.2g}',
+        ax.annotate(f'+{sd_limit} SD: {float_to_2dp_by_default(upper)}',
                     xy=(0.99, 0.92),
                     horizontalalignment='right',
                     fontsize=14,
