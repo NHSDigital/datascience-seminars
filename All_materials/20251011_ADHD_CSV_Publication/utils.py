@@ -70,8 +70,7 @@ def ratio_to_percentage_dp(table, col_name = 'ratio', dp_place = None, removed_e
 
     return table
 
-def save_csv_for_publication(table, name, 
-                              front_marker = 'Main_', file_path = config_param['save_path']):
+def save_csv_for_publication(table, name, file_path, front_marker = 'Main_'):
     """
     Save a table to a CSV file prepared for publication.
     This function ensures the provided filename ends with a .csv extension, prefixes
@@ -118,3 +117,16 @@ def save_csv_for_publication(table, name,
     path_to_save = file_path + front_marker + name
 
     table.to_csv(path_to_save, index = False)
+
+def pipeline_measure_csv(config_info, key, parameters):
+
+    #Loading the data
+    csv_table =  pd.read_csv(config_info[key])
+
+    #Data Wrangling
+    csv_table = ratio_to_percentage_dp(csv_table)
+    
+    #Save the file
+    (
+        save_csv_for_publication(
+            ,'Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months')
