@@ -1,0 +1,12 @@
+list_of_csvs = {
+    'Table_2_Prevalence_of_ADHD_Diagnosis':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_2_Prevalence_of_ADHD_Diagnosis.csv',
+    'Table_3_are_prescribed_ADHD_medication_in_ADHD_group':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_are_prescribed_ADHD_medication_in_ADHD_group.csv',
+    'Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.csv',
+    'Table_3_with_ADHD_that_are_prescribed_ADHD_medication':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_with_ADHD_that_are_prescribed_ADHD_medication.csv',
+    'Table_3_without_ADHD_that_are_prescribed_ADHD_medication':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_without_ADHD_that_are_prescribed_ADHD_medication.csv',
+    'Table_5_time_from_diagnosis_to_treatment':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_5_time_from_diagnosis_to_treatment.csv',
+}
+
+parameters = {
+    'output_path':'All_materials/20251011_ADHD_CSV_Publication/outputs'
+}
