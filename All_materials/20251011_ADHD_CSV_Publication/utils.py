@@ -119,6 +119,26 @@ def save_csv_for_publication(table, name, file_path, front_marker = 'Main_'):
     table.to_csv(path_to_save, index = False)
 
 def pipeline_measure_csv(config_info, key, parameters):
+    """
+    Process a CSV file through a data pipeline for publication.
+    This function loads a CSV file, applies data transformations (ratio to percentage conversion),
+    and saves the processed file to a specified output location.
+    Args:
+        config_info (dict): Configuration dictionary containing file paths, keyed by identifier.
+        key (str): Key to access the input CSV file path from config_info.
+        parameters (dict): Dictionary containing pipeline parameters, including:
+            - 'output_path' (str): Directory path where the processed CSV will be saved.
+    Returns:
+        None
+    Raises:
+        KeyError: If key is not found in config_info or 'output_path' not in parameters.
+        FileNotFoundError: If the CSV file at config_info[key] does not exist.
+        pd.errors.ParserError: If the CSV file cannot be parsed.
+    Examples:
+        >>> config = {'data': '/path/to/input.csv'}
+        >>> params = {'output_path': '/path/to/output/'}
+        >>> pipeline_measure_csv(config, 'data', params)
+    """
 
     #Loading the data
     csv_table =  pd.read_csv(config_info[key])
@@ -129,4 +149,8 @@ def pipeline_measure_csv(config_info, key, parameters):
     #Save the file
     (
         save_csv_for_publication(
-            ,'Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months')
+            csv_table, 
+            config_info[key], 
+            parameters['output_path']
+            )
+    )
