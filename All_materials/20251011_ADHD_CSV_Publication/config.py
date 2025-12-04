@@ -8,5 +8,5 @@ list_of_csvs = {
 }
 
 parameters = {
-    'output_path':'All_materials/20251011_ADHD_CSV_Publication/outputs'
+    'output_path':'All_materials/20251011_ADHD_CSV_Publication/outputs/'
 }

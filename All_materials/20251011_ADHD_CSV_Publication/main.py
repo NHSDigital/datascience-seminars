@@ -1,0 +1,22 @@
+from config import list_of_csvs, parameters
+import utils
+
+#Produce the CSV for each table
+
+ADHD_Diagnosis = 'Table_2_Prevalence_of_ADHD_Diagnosis'
+utils.pipeline_measure_csv(list_of_csvs, ADHD_Diagnosis, parameters)
+
+General_pop_ADHD_and_medication = 'Table_3_with_ADHD_that_are_prescribed_ADHD_medication'
+utils.pipeline_measure_csv(list_of_csvs, General_pop_ADHD_and_medication, parameters)
+
+ADHD_Diagonsed_with_medication = 'Table_3_are_prescribed_ADHD_medication_in_ADHD_group'
+utils.pipeline_measure_csv(list_of_csvs, ADHD_Diagonsed_with_medication, parameters)
+
+General_pop_with_no_ADHD_and_medication = 'Table_3_without_ADHD_that_are_prescribed_ADHD_medication'
+utils.pipeline_measure_csv(list_of_csvs, General_pop_with_no_ADHD_and_medication, parameters)
+
+ADHD_and_medication_in_6_months = 'Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months'
+utils.pipeline_measure_csv(list_of_csvs, ADHD_and_medication_in_6_months, parameters)
+
+Time_between_dia_and_med = 'Table_5_time_from_diagnosis_to_treatment'
+utils.Patients_table_time_between_dia_and_med(list_of_csvs, Time_between_dia_and_med, parameters)
