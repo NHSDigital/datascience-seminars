@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-def ratio_to_percentage_dp(table, col_name = 'ratio', dp_place = None, removed_empty = True,
+def ratio_to_percentage_dp(table, col_name = 'ratio', dp_place = True, removed_empty = True,
                            col_rename = {'ratio':'percentage'} 
                            ):
     
@@ -70,7 +70,7 @@ def ratio_to_percentage_dp(table, col_name = 'ratio', dp_place = None, removed_e
 
     return table
 
-def save_csv_for_publication(table, name, file_path, front_marker = 'Main_'):
+def save_csv_for_publication(table, name, file_path, front_marker = 'MainFAKE_'):
     """
     Save a table to a CSV file prepared for publication.
     This function ensures the provided filename ends with a .csv extension, prefixes
@@ -150,7 +150,53 @@ def pipeline_measure_csv(config_info, key, parameters):
     (
         save_csv_for_publication(
             csv_table, 
-            config_info[key], 
+            key, 
+            parameters['output_path']
+            )
+    )
+
+def Patients_table_time_between_dia_and_med(config_info, key, parameters):
+    """
+    Process patient data to calculate time between diagnosis and medication.
+    
+    Reads a CSV file, rounds the 'size' column, removes the 'mean' column,
+    and saves the processed table for publication.
+    
+    Parameters
+    ----------
+    config_info : dict
+        Configuration dictionary containing file paths, where config_info[key]
+        points to the CSV file to be processed.
+    key : str
+        Key to access the file path in config_info dictionary.
+    parameters : dict
+        Dictionary containing processing parameters with 'output_path' key
+        specifying where to save the processed CSV file.
+    
+    Returns
+    -------
+    None
+        The function saves the processed table to a CSV file and does not
+        return a value.
+    
+    Side Effects
+    ----------
+    - Reads CSV file from path specified in config_info[key]
+    - Modifies data in-place (rounds 'size' column, drops 'mean' column)
+    - Saves processed CSV file to output_path specified in parameters
+    """
+
+    csv_table =  pd.read_csv(config_info[key])
+
+    csv_table['size'] = csv_table['size'].round()
+
+    csv_table = csv_table.drop(['mean'], axis = 1)
+
+    #Save the file
+    (
+        save_csv_for_publication(
+            csv_table, 
+            key, 
             parameters['output_path']
             )
     )
