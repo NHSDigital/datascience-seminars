@@ -1,4 +1,4 @@
-Measure,Reporting_Period_Start_Date,Reporting_Period_End_Date,Sex,Age_Band,Numerator,Denominator,Percentage
+Measure,interval_start,interval_end,sex,age_band,numerator,denominator,ratio
 ADHD_recorded_prevalence,01/04/2016,31/03/2017,male,75 and over,50,714740,0.006995551
 ADHD_recorded_prevalence,01/04/2016,31/03/2017,female,18 to 24,4385,781025,0.561441695
 ADHD_recorded_prevalence,01/04/2016,31/03/2017,male,18 to 24,22415,862860,2.597756299

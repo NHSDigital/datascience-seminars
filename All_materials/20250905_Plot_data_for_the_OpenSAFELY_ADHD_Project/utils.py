@@ -16,30 +16,27 @@ import requests
 
 def get_open_data(pre_processing):
 
-    """
-    Downloads and extracts open data from a specified URL if not already present.
+    # Getting the marker on fake data
+    create_marker_on_csv(pre_processing)
 
-    Args:
-        pre_processing (dict): A dictionary containing:
-            - 'open_data_link' (str): URL to download the open data zip file.
-            - 'open_data_check_folder' (str): Path to check if the data is already downloaded.
+    #Getting the open data
+    response = requests.get(pre_processing['open_data_link'])
+    zip_filename = os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])
 
-    Returns:
-        None
-    """
+    with open(zip_filename, "wb") as f:
+        f.write(response.content)
 
-    # Download the file if it doesn't already exist
-    if not os.path.exists(os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])):
+    # Extract the zip file
+    with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
+        zip_ref.extractall(pre_processing['open_data_check_folder'])
 
-        response = requests.get(pre_processing['open_data_link'])
-        zip_filename = os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])
+    #Need to wranlhle the dia TPP's data
+    dia_tpp = pd.read_csv(pre_processing['adhd_dia_file'])
 
-        with open(zip_filename, "wb") as f:
-            f.write(response.content)
-
-        # Extract the zip file
-        with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
-            zip_ref.extractall(pre_processing['open_data_check_folder'])
+    dia_tpp = dia_tpp.rename(columns=pre_processing['rename_dict'])
+    
+    dia_tpp.to_csv(pre_processing['adhd_dia_file'], index = False)
+    
 
 
 
