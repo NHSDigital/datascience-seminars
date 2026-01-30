@@ -11,6 +11,107 @@ from matplotlib.ticker import FormatStrFormatter
 
 from config import nhs_palette
 
+import zipfile
+import requests
+
+def get_open_data(pre_processing):
+    """
+    Downloads, extracts, and processes open data for the ADHD project.
+    
+    This function performs the following operations:
+    1. Creates a marker on fake data for tracking purposes
+    2. Downloads open data from a specified URL
+    3. Extracts the downloaded zip file
+    4. Reads and processes ADHD data from the TPP provider
+    5. Renames columns, converts date formats, and recomputes ratios
+    6. Saves the processed data back to the original file
+    
+    Args:
+        pre_processing (dict): Configuration dictionary containing:
+            - 'open_data_link' (str): URL to download the open data
+            - 'open_data_check_folder' (str): Path to folder for storing downloaded files
+            - 'zip_file_name' (str): Name of the zip file to create
+            - 'adhd_dia_file' (str): Path to the ADHD DIA TPP CSV file
+            - 'rename_dict' (dict): Mapping of old column names to new column names
+            - 'date_cols' (list): List of column names containing dates to convert
+    
+    Returns:
+        None: Modifies files in place (saves processed data to CSV)
+    
+    Raises:
+        requests.RequestException: If downloading the data fails
+        zipfile.BadZipFile: If the zip file is corrupted
+        pd.errors.ParserError: If CSV parsing fails
+    """
+
+    # Getting the marker on fake data
+    create_marker_on_csv(pre_processing)
+
+    #Getting the open data
+    response = requests.get(pre_processing['open_data_link'])
+    zip_filename = os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])
+
+    with open(zip_filename, "wb") as f:
+        f.write(response.content)
+
+    # Extract the zip file
+    with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
+        zip_ref.extractall(pre_processing['open_data_check_folder'])
+
+    #Need to wranlhle the dia TPP's data
+    dia_tpp = pd.read_csv(pre_processing['adhd_dia_file'])
+
+    dia_tpp = dia_tpp.rename(columns=pre_processing['rename_dict'])
+    dia_tpp = covert_date_format(dia_tpp, pre_processing['date_cols'])
+    dia_tpp = recompute_ratio(dia_tpp)
+    dia_tpp.to_csv(pre_processing['adhd_dia_file'], index = False)
+
+def recompute_ratio(table, numerator_col = 'numerator', denominator_col = 'denominator', ratio_col = 'ratio'):
+    """
+    Compute or recompute the ratio column in a table by dividing numerator by denominator.
+    
+    Parameters
+    ----------
+    table : pandas.DataFrame
+        The input DataFrame containing the numerator and denominator columns.
+    numerator_col : str, optional
+        The name of the column containing numerator values. Default is 'numerator'.
+    denominator_col : str, optional
+        The name of the column containing denominator values. Default is 'denominator'.
+    ratio_col : str, optional
+        The name of the column where the computed ratio will be stored. Default is 'ratio'.
+    
+    Returns
+    -------
+    pandas.DataFrame
+        The input table with the ratio column added or updated.
+    
+    Notes
+    -----
+    The function performs element-wise division of the numerator column by the denominator column.
+    Division by zero will result in inf or nan values depending on the numerator values.
+    """
+
+    table[ratio_col] = table[numerator_col]/table[denominator_col]
+
+    return table
+    
+def covert_date_format(pandas_table,list_of_cols, date_format = '%Y-%m-%d'):
+    """
+    Convert the date format of specified columns in a pandas DataFrame.
+
+    Parameters:
+        pandas_table (pd.DataFrame): The DataFrame containing the columns to be converted.
+        list_of_cols (list): A list of column names in the DataFrame that contain date values.
+        date_format (str): The desired date format to convert the dates to (default is '%Y-%m-%d').
+
+    Returns:
+        pd.DataFrame: The DataFrame with the specified columns converted to the new date format.
+    """
+    for col in list_of_cols:
+        pandas_table[col] = pd.to_datetime(pandas_table[col],format="%d/%m/%Y").dt.strftime(date_format)
+    return pandas_table
+
 def create_marker_on_csv(pre_processing):
     """
     Adds a marker column with a specified value to all CSV files in a given directory and its subdirectories.
@@ -877,7 +978,7 @@ def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
         raise ValueError('m1 does not have the same length as m2.')
     if sd_limit < 0:
         raise ValueError(f'sd_limit ({sd_limit}) is less than 0.')
-
+    print(f'Input arrays have lengths {len(m1)} and {len(m2)}')
     means = np.mean([m1, m2], axis=0)
     diffs = m1 - m2
     mean_diff = np.mean(diffs)

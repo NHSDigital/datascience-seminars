@@ -1,0 +1,163 @@
+Measure,Year_of_medication,Sex,Age_Band,Median,size
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,0 to 9,12,440
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,0 to 9,13,1910
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,0 to 9,14,460
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,0 to 9,14,2090
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,0 to 9,14,510
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,0 to 9,13,2500
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,0 to 9,17,640
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,0 to 9,16,2840
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,0 to 9,17,490
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,0 to 9,17,1960
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,0 to 9,21,610
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,0 to 9,19,2430
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,0 to 9,22,750
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,0 to 9,21,2750
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,0 to 9,21,790
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,0 to 9,21,2790
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,0 to 9,24,830
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,0 to 9,26,2720
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,10 to 17,16,650
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,10 to 17,18,2300
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,10 to 17,15,690
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,10 to 17,15,2540
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,10 to 17,12,910
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,10 to 17,16,3030
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,10 to 17,15,1130
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,10 to 17,17,3630
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,10 to 17,19,1020
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,10 to 17,22,2900
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,10 to 17,18,1530
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,10 to 17,27,3780
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,10 to 17,20,2150
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,10 to 17,29,4670
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,10 to 17,25,2420
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,10 to 17,32,4960
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,10 to 17,32,2810
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,10 to 17,38,5310
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,18 to 24,16,270
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,18 to 24,26,570
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,18 to 24,10,310
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,18 to 24,19,540
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,18 to 24,12,430
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,18 to 24,14,630
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,18 to 24,11,580
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,18 to 24,13,880
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,18 to 24,13,700
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,18 to 24,14,850
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,18 to 24,15,1450
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,18 to 24,18,1140
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,18 to 24,20,2130
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,18 to 24,18,1630
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,18 to 24,30,2310
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,18 to 24,26,1760
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,18 to 24,30,2220
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,18 to 24,30,1710
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,25 to 34,18,210
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,25 to 34,18,450
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,25 to 34,22,260
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,25 to 34,23,460
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,25 to 34,15,400
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,25 to 34,22,650
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,25 to 34,19,540
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,25 to 34,19,840
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,25 to 34,16,740
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,25 to 34,18,970
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,25 to 34,18,1380
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,25 to 34,20,1380
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,25 to 34,21,2470
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,25 to 34,22,1930
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,25 to 34,30,3170
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,25 to 34,28,2290
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,25 to 34,33,3470
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,25 to 34,28,2580
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,35 and over,10,200
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,35 and over,16,280
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,35 and over,14,210
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,35 and over,13,370
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,35 and over,11,330
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,35 and over,11,550
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,35 and over,12,480
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,35 and over,13,740
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,35 and over,15,650
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,35 and over,14,780
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,35 and over,18,1160
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,35 and over,19,1140
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,35 and over,18,2030
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,35 and over,18,1620
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,35 and over,25,3000
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,35 and over,25,2170
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,35 and over,28,3810
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,35 and over,26,2800
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,0 to 9,13,2350
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,0 to 9,14,2540
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,0 to 9,13,3000
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,0 to 9,17,3480
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,0 to 9,17,2440
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,0 to 9,20,3030
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,0 to 9,21,3500
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,0 to 9,21,3580
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,0 to 9,25,3550
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,10 to 17,18,2940
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,10 to 17,15,3230
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,10 to 17,15,3940
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,10 to 17,17,4760
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,10 to 17,21,3910
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,10 to 17,24,5300
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,10 to 17,26,6820
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,10 to 17,29,7380
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,10 to 17,36,8120
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,18 to 24,22,840
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,18 to 24,16,850
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,18 to 24,13,1050
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,18 to 24,12,1450
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,18 to 24,13,1540
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,18 to 24,16,2590
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,18 to 24,19,3750
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,18 to 24,28,4070
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,18 to 24,30,3930
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,25 to 34,18,660
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,25 to 34,22,710
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,25 to 34,19,1040
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,25 to 34,19,1380
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,25 to 34,17,1710
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,25 to 34,19,2750
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,25 to 34,21,4400
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,25 to 34,30,5450
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,25 to 34,31,6050
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,35 and over,13,480
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,35 and over,13,580
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,35 and over,11,880
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,35 and over,13,1220
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,35 and over,14,1420
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,35 and over,18,2290
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,35 and over,18,3640
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,35 and over,25,5160
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,35 and over,27,6600
+Median_time_ADHD_diagnosis_to_medication,2016-2017,female,ALL,14,1760
+Median_time_ADHD_diagnosis_to_medication,2016-2017,male,ALL,16,5510
+Median_time_ADHD_diagnosis_to_medication,2017-2018,female,ALL,14,1920
+Median_time_ADHD_diagnosis_to_medication,2017-2018,male,ALL,15,5980
+Median_time_ADHD_diagnosis_to_medication,2018-2019,female,ALL,13,2550
+Median_time_ADHD_diagnosis_to_medication,2018-2019,male,ALL,15,7360
+Median_time_ADHD_diagnosis_to_medication,2019-2020,female,ALL,15,3360
+Median_time_ADHD_diagnosis_to_medication,2019-2020,male,ALL,16,8920
+Median_time_ADHD_diagnosis_to_medication,2020-2021,female,ALL,16,3580
+Median_time_ADHD_diagnosis_to_medication,2020-2021,male,ALL,18,7440
+Median_time_ADHD_diagnosis_to_medication,2021-2022,female,ALL,17,6110
+Median_time_ADHD_diagnosis_to_medication,2021-2022,male,ALL,22,9850
+Median_time_ADHD_diagnosis_to_medication,2022-2023,female,ALL,20,9510
+Median_time_ADHD_diagnosis_to_medication,2022-2023,male,ALL,23,12590
+Median_time_ADHD_diagnosis_to_medication,2023-2024,female,ALL,27,11680
+Median_time_ADHD_diagnosis_to_medication,2023-2024,male,ALL,27,13950
+Median_time_ADHD_diagnosis_to_medication,2024-2025,female,ALL,30,13140
+Median_time_ADHD_diagnosis_to_medication,2024-2025,male,ALL,30,15090
+Median_time_ADHD_diagnosis_to_medication,2016-2017,ALL,ALL,15,7260
+Median_time_ADHD_diagnosis_to_medication,2017-2018,ALL,ALL,15,7890
+Median_time_ADHD_diagnosis_to_medication,2018-2019,ALL,ALL,14,9900
+Median_time_ADHD_diagnosis_to_medication,2019-2020,ALL,ALL,16,12270
+Median_time_ADHD_diagnosis_to_medication,2020-2021,ALL,ALL,17,11010
+Median_time_ADHD_diagnosis_to_medication,2021-2022,ALL,ALL,20,15950
+Median_time_ADHD_diagnosis_to_medication,2022-2023,ALL,ALL,21,22090
+Median_time_ADHD_diagnosis_to_medication,2023-2024,ALL,ALL,27,25620
+Median_time_ADHD_diagnosis_to_medication,2024-2025,ALL,ALL,30,28220

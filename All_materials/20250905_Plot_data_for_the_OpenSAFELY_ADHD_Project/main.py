@@ -13,9 +13,10 @@ import utils
 
 
 """
-Adding FAKE DATA 
+Adding FAKE DATA and downloading open data
 """
-utils.create_marker_on_csv(pre_processing)
+
+utils.get_open_data(pre_processing)
 
 """
 Ploting measures
