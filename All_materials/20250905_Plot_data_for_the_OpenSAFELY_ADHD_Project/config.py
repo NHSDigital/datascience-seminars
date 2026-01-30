@@ -36,7 +36,7 @@ user_time_plots = {
 monthly_interval_plot = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.csv',
     'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.svg',
-    'watermark':r'TEST DATA\nNOT REAL',
+    'watermark':'TEST DATA\nNOT REAL',
 }
 
 bland_altman_plt = {
