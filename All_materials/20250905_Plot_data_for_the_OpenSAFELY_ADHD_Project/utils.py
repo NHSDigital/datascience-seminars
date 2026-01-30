@@ -11,6 +11,38 @@ from matplotlib.ticker import FormatStrFormatter
 
 from config import nhs_palette
 
+import zipfile
+import requests
+
+def get_open_data(pre_processing):
+
+    """
+    Downloads and extracts open data from a specified URL if not already present.
+
+    Args:
+        pre_processing (dict): A dictionary containing:
+            - 'open_data_link' (str): URL to download the open data zip file.
+            - 'open_data_check_folder' (str): Path to check if the data is already downloaded.
+
+    Returns:
+        None
+    """
+
+    # Download the file if it doesn't already exist
+    if not os.path.exists(os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])):
+
+        response = requests.get(pre_processing['open_data_link'])
+        zip_filename = os.path.join(pre_processing['open_data_check_folder'], pre_processing['zip_file_name'])
+
+        with open(zip_filename, "wb") as f:
+            f.write(response.content)
+
+        # Extract the zip file
+        with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
+            zip_ref.extractall(pre_processing['open_data_check_folder'])
+
+
+
 def create_marker_on_csv(pre_processing):
     """
     Adds a marker column with a specified value to all CSV files in a given directory and its subdirectories.

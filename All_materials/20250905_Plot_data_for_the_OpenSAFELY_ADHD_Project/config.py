@@ -5,6 +5,9 @@ nhs_palette = ["#12436D",'#28A197', "#801650", "#F46A25", "#3D3D3D","#A285D1"]
 pre_processing = {
     'file_path':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files',
     'marker':'FAKE_DATA',
+    'open_data_link':r'https://files.digital.nhs.uk/02/F0E82B/OpenSAFELY%20-%20Additional%20data%20tables.zip',
+    'open_data_check_folder':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/open_data',
+    'zip_file_name':'open_data.zip',
 }
 
 save_plots_config = {
