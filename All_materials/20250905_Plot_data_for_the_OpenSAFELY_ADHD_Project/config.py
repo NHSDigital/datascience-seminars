@@ -18,6 +18,7 @@ pre_processing = {
         'Denominator':'denominator',
         'Percentage':'ratio'
     },
+    'date_cols':['interval_start','interval_end'],
 }
 
 save_plots_config = {
@@ -40,7 +41,7 @@ monthly_interval_plot = {
 
 bland_altman_plt = {
     'file_path_emis':'All_materials/20250905_ADHD_Prevalence_EMIS_and_Cegedim/emis_measure.csv',
-    'file_path_tpp' : '/workspaces/datascience-seminars/All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/open_data/Table 1 - ADHD prevalence.csv',
+    'file_path_tpp' : 'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/source_files/open_data/Table 1 - ADHD prevalence.csv',
     'file_name':'All_materials/20250905_Plot_data_for_the_OpenSAFELY_ADHD_Project/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.svg',
     'watermark': r'Using Open Data',
     'joining_cols' : ['interval_start','interval_end','sex','age_band'],

@@ -34,11 +34,55 @@ def get_open_data(pre_processing):
     dia_tpp = pd.read_csv(pre_processing['adhd_dia_file'])
 
     dia_tpp = dia_tpp.rename(columns=pre_processing['rename_dict'])
-    
+    dia_tpp = covert_date_format(dia_tpp, pre_processing['date_cols'])
+    dia_tpp = recompute_ratio(dia_tpp)
     dia_tpp.to_csv(pre_processing['adhd_dia_file'], index = False)
+
+def recompute_ratio(table, numerator_col = 'numerator', denominator_col = 'denominator', ratio_col = 'ratio'):
+    """
+    Compute or recompute the ratio column in a table by dividing numerator by denominator.
     
+    Parameters
+    ----------
+    table : pandas.DataFrame
+        The input DataFrame containing the numerator and denominator columns.
+    numerator_col : str, optional
+        The name of the column containing numerator values. Default is 'numerator'.
+    denominator_col : str, optional
+        The name of the column containing denominator values. Default is 'denominator'.
+    ratio_col : str, optional
+        The name of the column where the computed ratio will be stored. Default is 'ratio'.
+    
+    Returns
+    -------
+    pandas.DataFrame
+        The input table with the ratio column added or updated.
+    
+    Notes
+    -----
+    The function performs element-wise division of the numerator column by the denominator column.
+    Division by zero will result in inf or nan values depending on the numerator values.
+    """
 
+    table[ratio_col] = table[numerator_col]/table[denominator_col]
 
+    return table
+    
+def covert_date_format(pandas_table,list_of_cols, date_format = '%Y-%m-%d'):
+    """
+    Convert the date format of specified columns in a pandas DataFrame.
+
+    Parameters:
+        pandas_table (pd.DataFrame): The DataFrame containing the columns to be converted.
+        list_of_cols (list): A list of column names in the DataFrame that contain date values.
+        date_format (str): The desired date format to convert the dates to (default is '%Y-%m-%d').
+
+    Returns:
+        pd.DataFrame: The DataFrame with the specified columns converted to the new date format.
+    """
+    for col in list_of_cols:
+        pandas_table[col] = pd.to_datetime(pandas_table[col],format="%d/%m/%Y").dt.strftime(date_format)
+    return pandas_table
 
 def create_marker_on_csv(pre_processing):
     """
@@ -906,7 +950,7 @@ def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
         raise ValueError('m1 does not have the same length as m2.')
     if sd_limit < 0:
         raise ValueError(f'sd_limit ({sd_limit}) is less than 0.')
-
+    print(f'Input arrays have lengths {len(m1)} and {len(m2)}')
     means = np.mean([m1, m2], axis=0)
     diffs = m1 - m2
     mean_diff = np.mean(diffs)
