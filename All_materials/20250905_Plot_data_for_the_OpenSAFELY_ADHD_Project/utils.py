@@ -15,6 +15,34 @@ import zipfile
 import requests
 
 def get_open_data(pre_processing):
+    """
+    Downloads, extracts, and processes open data for the ADHD project.
+    
+    This function performs the following operations:
+    1. Creates a marker on fake data for tracking purposes
+    2. Downloads open data from a specified URL
+    3. Extracts the downloaded zip file
+    4. Reads and processes ADHD data from the TPP provider
+    5. Renames columns, converts date formats, and recomputes ratios
+    6. Saves the processed data back to the original file
+    
+    Args:
+        pre_processing (dict): Configuration dictionary containing:
+            - 'open_data_link' (str): URL to download the open data
+            - 'open_data_check_folder' (str): Path to folder for storing downloaded files
+            - 'zip_file_name' (str): Name of the zip file to create
+            - 'adhd_dia_file' (str): Path to the ADHD DIA TPP CSV file
+            - 'rename_dict' (dict): Mapping of old column names to new column names
+            - 'date_cols' (list): List of column names containing dates to convert
+    
+    Returns:
+        None: Modifies files in place (saves processed data to CSV)
+    
+    Raises:
+        requests.RequestException: If downloading the data fails
+        zipfile.BadZipFile: If the zip file is corrupted
+        pd.errors.ParserError: If CSV parsing fails
+    """
 
     # Getting the marker on fake data
     create_marker_on_csv(pre_processing)
