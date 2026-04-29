@@ -1,5 +1,6 @@
 {
   "name": "Python Dev Container",
+  "postCreateCommand": "pip install -r requirements.txt",
   "customizations": {
     "vscode": {
       "extensions": [
