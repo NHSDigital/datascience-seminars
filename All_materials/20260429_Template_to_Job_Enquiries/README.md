@@ -37,7 +37,7 @@ Response table:
 | :---     | :---         | :---        |
 | Below 18 | None | [Trainee data scientist](https://ddat-capability-framework.service.gov.uk/role/data-scientist#trainee-data-scientist) |
 | Undergrads | [Graduate Management Training Scheme](https://graduates.nhs.uk/), [10,000 Interns Foundation](https://10000internsfoundation.com/) | [Associate data scientist](https://ddat-capability-framework.service.gov.uk/role/data-scientist#associate-data-scientist)|
-| Others including graduates | NHS and allied jobs tend to advertise data scientist jobs on [NHS Jobs](https://www.jobs.nhs.uk/candidate/search/results?keyword=data%20scientist&language=en), [nhsjobs.com](https://www.nhsjobs.com/job_list/ns?JobSearch_q=Data+scientist&JobSearch_QueryIntegratedSubmit=Search&_tr=JobSearch&_ts=1), [Civil Service Jobs](https://www.civilservicejobs.service.gov.uk/csr/index.cgi) | Based on the position given on the CV, by default [Data Scientist](https://ddat-capability-framework.service.gov.uk/role/data-scientist#data-scientist) |
+| Others including graduates | NHS and allied jobs tend to advertise data scientist jobs on [NHS Jobs](https://www.jobs.nhs.uk/candidate/search/results?keyword=data%20scientist&language=en), [nhsjobs.com](https://www.nhsjobs.com/job_list/ns?JobSearch_q=Data+scientist&JobSearch_QueryIntegratedSubmit=Search&_tr=JobSearch&_ts=1), [Civil Service Jobs](https://www.civilservicejobs.service.gov.uk/csr/index.cgi) | Based on the position given on the CV, by default [Data scientist](https://ddat-capability-framework.service.gov.uk/role/data-scientist#data-scientist) |
 
 
 
