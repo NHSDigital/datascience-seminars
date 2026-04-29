@@ -31,14 +31,12 @@ Have a template or protocol for applicants who email speculative job enquires th
 > 
 > > Your enquiry contains signs of [AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), please note the use of [AI in recruitment]( https://www.civil-service-careers.gov.uk/artificial-intelligence-and-recruitment/).
 
-Reponse table:
+Response table:
 
-| Category | Programs/Schemes | Position Basis | Job Sources |
-|----------|------------------|----------------|-------------|
-| Undergrads | • 10,000 Interns Foundation<br>• Graduate Management Training Scheme | Based on Associate data scientist | |
-| Others including graduates | | | NHS and allied jobs tend to advertised on data scientist jobs on<br>• data scientist jobs - NHS Jobs<br>• NHSJobs.com: Vacancies \| trac.jobs<br>• Civil Service job search - Civil Service Jobs - GOV.UK |
-| Based on the position given on the CV | | by default Data scientist | |
-| < 18 | | Based on Trainee data scientist | |
+| Category | Opportunities | If CV is attached - provide light feedback based on [Profession Capability Framework](https://ddat-capability-framework.service.gov.uk/role/data-scientist) based on the following level|
+| :---     | :---         | :---        |
+| Below 18 | None | Trainee data scientist |
+
 
 
 
