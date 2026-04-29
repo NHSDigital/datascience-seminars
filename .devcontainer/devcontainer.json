@@ -1,0 +1,10 @@
+{
+  "name": "Python Dev Container",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
+}
