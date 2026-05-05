@@ -19,7 +19,7 @@ Have a template or protocol for applicants who email speculative job enquires th
 > [!IMPORTANT]  
 > Add the following to all reponses:
 > 
-> > NHS England is currently under a [reorganisation](https://www.gov.uk/government/news/worlds-largest-quango-scrapped-under-reforms-to-put-patients-first) and thus may be subjected to recruitment freeze
+> > NHS England is currently under a [reorganisation](https://www.gov.uk/government/news/worlds-largest-quango-scrapped-under-reforms-to-put-patients-first) and thus may be subjected to recruitment freeze. Any vacancies can be found [here]( https://www.england.nhs.uk/about/working-for/#nhs-england-jobs-2)
 >
 
 > [!NOTE]  
