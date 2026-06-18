@@ -10,7 +10,7 @@ Have a systematic and comprehensive way of contacting UK universities on opportu
 Work is supported by two directions:
 1. The [10 Year Health Plan](https://www.gov.uk/government/publications/10-year-health-plan-for-england-fit-for-the-future/fit-for-the-future-10-year-health-plan-for-england-accessible-version) in Chapter 7 states that the NHS will be transform into a force of social mobility.
    - By outreaching to all universities, we hope to have a workspace that reflect the local communities.
-3. In [NHS England’s equality, diversity, and inclusion improvement plan](https://www.england.nhs.uk/long-read/nhs-equality-diversity-and-inclusion-improvement-plan/), High impact action 2 aims to support fair and inclusive recruitment processes.
+2. In [NHS England’s equality, diversity, and inclusion improvement plan](https://www.england.nhs.uk/long-read/nhs-equality-diversity-and-inclusion-improvement-plan/), High impact action 2 aims to support fair and inclusive recruitment processes.
    - By outreaching to all universities, we hope to target under-representation and lack of diversity within the profession.
 
 
