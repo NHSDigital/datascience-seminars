@@ -56,3 +56,4 @@ We have borrowed a lot from other [Coffee and Coding](https://analysisfunction.c
 | 2025-11-14                         | [ML in FDP for OPEL]( /All_materials/20251114_ML_in_FDP_for_OPEL)                                                                 |
 | 2026-02-19                         | [ADHD medication presentation]( /All_materials/20260219_ADHD_medication_presentation)                                             |
 | 2026-04-29                         | [Template to Job Enquiries]( /All_materials/20260429_Template_to_Job_Enquiries)                                                   |
+| 2026-06-26                         | [New ADHD patients meds]( /All_materials/20260626_New_ADHD_patients_meds)                                                         |
